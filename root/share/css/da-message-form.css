@@ -1,0 +1,77 @@
+/*--v-david 1395-07-6*/
+
+.message-box{
+	width: 400px;
+	background-color: #fff;
+	border: 1px solid rgba(255, 126, 0, 0.2);
+	border-radius: 6px;
+	
+	display:inline-block;
+	
+	margin: 5px;
+	box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+
+.message-title-content{
+	padding: 1px 14px;
+	margin: 0;
+	font-size: 14px;
+	background-color: #f7f7f7;
+	border-bottom: 1px solid #ebebeb;
+	border-radius: 5px 5px 0 0;
+	height: 40px;
+	padding-bottom: 10px;
+	
+	text-align: justify;
+	
+}
+.message-title{
+	margin-top: -2px;
+	padding: 5px;
+	display: inline-block;
+	
+	font-family: BArshia;
+	font-size: 25px	
+	
+}
+.message-date{	
+	float: left;
+	margin-top: 10px;
+	color: midnightblue;
+	font-size: 15px;	
+	font-family: 'BHOMA';
+}
+.message-content{
+	clear: both;
+	padding: 9px 14px;
+	font-size: 23px;	
+	font-family: 'BKamran';
+	text-align: justify;
+	line-height:1;
+}
+
+.message-container {
+	width: 95%;
+	background-color: rgba(139, 155, 161, 0.5);
+	margin: auto;
+	border-radius: 8px;
+	box-shadow: 0 0px 12px rgba(0,0,0,.175);
+	padding: 30px 15px;
+	height: 91.5%;
+	overflow: hidden;
+	cursor: pointer;
+	height:100%;
+	position: relative;
+}
+
+.da-message-refresh {
+	margin-top: -18px;
+	margin-left: 5px;
+	position: fixed;
+}
+
+@media (max-width: 475px){
+	.message-box{
+		width: 100%;
+	}
+}

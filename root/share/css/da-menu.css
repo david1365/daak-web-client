@@ -1,0 +1,160 @@
+/*--v-david 1395-07-23*/
+.menu ul{
+	list-style-type: none;
+	cursor: pointer;
+}
+.menu a{
+	font-family: BMITRA;
+	font-size: 22px;
+	
+	text-decoration: none;
+	color: #337ab7;
+}
+
+
+.vertical-menu-container{
+	position: absolute;
+	width: 250px;
+	height: 100%;
+	background: rgba(246, 202, 125, 0.9);
+	border: 1px solid rgb(246, 202, 125);
+	top: 0px;
+	z-index: 5;
+	display: none;
+	
+	overflow: hidden;
+}
+.vertical-menu ul{
+	margin: 0;
+}
+.vertical-menu li{
+	padding: 5px 10px 5px 0px;
+	
+	border-style: dotted;
+	border: 1px dotted rgba(255,255,255,0.3);
+}
+
+.vertical-menu li:hover{
+  	text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.5);
+	
+	  transition-duration: 0.5s;
+}
+
+.vertical-menu a{
+	font-family: BMitra;
+	font-size: 20px;
+}
+
+.vertical-sub-menu li:hover{
+	  text-decoration: none;
+    background-color: rgb(255, 255, 255);
+	
+	  transition-duration: 0.5s;
+}
+
+.vertical-sub-menu ul a{
+  color: black;
+  text-shadow: 1px 1px 10px #FFF;
+  font-size: 17px;
+}
+.vertical-sub-menu ul{
+	 display: none;	
+	 margin-right: -10px;
+	
+	//border-top: 1px solid rgb(255,255,255);
+	//background-color: rgba(0, 0, 0, 0.1);;
+}
+
+.vertical-sub-menu ul li{
+	 background: transparent;
+	 border: none;
+	 padding-right: 20px;
+}
+
+.open  ul{
+	display: block;
+	background-color: rgba(156, 156, 156, 0.5);
+}
+
+.horizontal-menu{
+	 background-color: transparent;
+}
+.horizontal-menu li{
+	 display: inline-block;
+}
+.horizontal-menu li a{
+	display: inline-block;
+	padding: 10px;
+}
+.horizontal-menu li a:hover{
+  background-color: #eee;
+	color: #23527c;
+	border-radius: 5px;
+}
+.da-title{
+
+}
+.da-delete{
+
+}
+.da-view{
+
+}
+
+.da-edit-max-height{
+	overflow-y: auto;
+	max-height: 450px
+}
+
+.da-edit-extra-style{
+	color: #337ab7;
+	cursor: pointer;
+}
+
+.search, .add .da-edit{
+	opacity: 1 !important;
+	position: relative;
+}
+.search:hover{
+	opacity: 1 !important;
+}
+.da-add-menu{
+	width: 100%;
+}
+.search-menu, .da-add-menu{
+	z-index: 999999999999999999;
+}
+.search-menu, .da-edit-menu, .da-add-menu{
+	display: none;
+	position: absolute;
+	border: 1px solid rgba(0,0,0,.2);
+	width: auto;
+	left: 5px;
+	cursor: auto;
+}
+.search-menu .form-group{
+	margin: 0px 5px 5px 5px;
+	font-weight: 500;
+}
+.search-menu .form-inline{
+	text-align: right;
+}
+.search-menu .form-control{
+	min-width: 190px;
+}
+
+.da-edit-menu{
+	top: -5px;
+    position: relative;
+	padding: 10px;
+	text-align: justify;
+}
+
+
+@media (max-width: 505px){
+	.search-menu{
+		min-width: 100% !important;
+		position: relative;
+	}
+}

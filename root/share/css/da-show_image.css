@@ -1,0 +1,32 @@
+.da-image-modal{
+    overflow: hidden !important;
+}
+
+.da-image-modal-body{
+    /*direction: ltr;*/
+    padding: 0 !important;
+    overflow: auto;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background-color: rgb(230,230,230);
+    height: 100%;
+    height: -webkit-calc(100% - 50px);
+    height: -moz-calc(100% - 50px);
+    height: -khtml-calc(100% - 50px);
+    height: -ms-calc(100% - 50px);
+    height: -o-calc(100% - 50px);
+    height: calc(100% - 50px);
+    text-align: center;
+    position: relative;
+}
+
+.da-image-modal-img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+
+    /*transition-duration:1s;*/
+}

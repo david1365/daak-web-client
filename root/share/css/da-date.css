@@ -1,0 +1,41 @@
+.da-date{
+    min-width: 135px;
+    text-align: center;
+    padding: 2px 0px 0px 0px;
+   /*min-width: 150px !important;*/
+}
+.da-date .form-control {
+    min-width: 74px;
+}
+
+.da-date-focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+}
+.da-date div{
+    display: inline-block;
+}
+.da-date select{
+    font-family: BMitra;
+    font-size: 18px;
+    border: none;
+    display: none;
+}
+
+.da-date input[type=text]{
+    font-family: BMitra;
+    font-size: 18px;
+    border: none;
+    direction: ltr;
+}
+
+.da-date input[name=year]{
+    width: 30px;
+    padding-right: 1px;
+}
+.da-date input[name=month], input[name=day]{
+    width: 15px;
+    margin-left: -3px;
+}
