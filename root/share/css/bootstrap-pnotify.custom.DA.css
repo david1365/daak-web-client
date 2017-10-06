@@ -6,11 +6,11 @@
 	float: left;
 }
 .ui-pnotify-text, .ui-pnotify-title {
-	font-family: BKoodakBold-number, IranNastaliq;
+	font-family: BKoodakBold-number, IRANSans;
 }
 
-.ui-pnotify-text {	
-   font-size: 20px;
+.ui-pnotify-text {
+	font-size: 18px;
 }
 
 .ui-pnotify-title {
@@ -19,15 +19,15 @@
 }
 
 .ui-pnotify-icon, .ui-pnotify-icon span {
-    float: right;
-    margin-right: .2em;
-    
-    margin-left: 4px;
-    margin-top: -3px;
+	float: right;
+	margin-right: .2em;
+
+	margin-left: 4px;
+	margin-top: -3px;
 }
 
 .ui-pnotify-closer, .ui-pnotify-sticker {
-    float: left;
+	float: left;
 }
 
 .ui-pnotify-container{
@@ -44,7 +44,7 @@
 }
 
 .glyphicon {
-	font-size: 14px; 
+	font-size: 14px;
 }
 
 .dropdown-menu {
@@ -60,27 +60,27 @@
 	padding: 10px 0px 0px 0px;
 }
 
-	/*padding: 5px;
-	
-	max-width: 500px;
-		
-	column-count: 3;
-	-moz-column-count: 3;
-	-webkit-column-count: 3;
-	-o-column-count: 3;
-	-ms-column-count: 3;
-	
-	column-gap: 1px;
-	-moz-column-gap: 1px;
-	-o-column-gap: 1px;
-	-webkit-column-gap: 1px;
-	-ms-column-gap: 1px;
-	
-	column-rule: 1px dashed #a1a7aa;
-	-ms-column-rule: 1px dashed #a1a7aa;
-	-o-column-rule: 1px dashed #a1a7aa;
-	-webkit-column-rule: 1px dashed #a1a7aa;
-	-moz-column-rule: 1px dashed #a1a7aa;*/
+/*padding: 5px;
+
+max-width: 500px;
+
+column-count: 3;
+-moz-column-count: 3;
+-webkit-column-count: 3;
+-o-column-count: 3;
+-ms-column-count: 3;
+
+column-gap: 1px;
+-moz-column-gap: 1px;
+-o-column-gap: 1px;
+-webkit-column-gap: 1px;
+-ms-column-gap: 1px;
+
+column-rule: 1px dashed #a1a7aa;
+-ms-column-rule: 1px dashed #a1a7aa;
+-o-column-rule: 1px dashed #a1a7aa;
+-webkit-column-rule: 1px dashed #a1a7aa;
+-moz-column-rule: 1px dashed #a1a7aa;*/
 
 .dropdown-menu > li{
 	/*display: block;
@@ -95,7 +95,7 @@
 
 .dropdown-menu > li > a {
 	font-size: 16px !important;
-	font-family: BKoodakBold !important;
+	font-family: IRANSans !important;
 	/*padding: 2px 2px;
 	
 	
@@ -105,7 +105,7 @@
 	width: -ms-max-content;	
 	width: -webkit-max-content;
 	width: max-content;*/
-	
+
 	transition-duration: 0.4s;
 }
 
@@ -118,7 +118,7 @@
 }
 
 /*.alert-success {
-	font-family: IranNastaliq;
+	font-family: IRANSans;
 	font-size: 50px;
 	background-color: rgba(255,0,0,0.5);
 	
@@ -138,3 +138,12 @@
 .alert-info {
 	background-color: rgba(217,237,247, 0.5);
 }*/
+
+.form-control {
+	font-size: 15px !important;
+}
+
+.alert h4 {
+	margin-top: -8px;
+	color: inherit;
+}

@@ -30,7 +30,7 @@
 	padding: 5px;
 	display: inline-block;
 	
-	font-family: BArshia;
+	font-family: IRANSans;
 	font-size: 25px	
 	
 }
@@ -39,13 +39,13 @@
 	margin-top: 10px;
 	color: midnightblue;
 	font-size: 15px;	
-	font-family: 'BHOMA';
+	font-family: 'IRANSans';
 }
 .message-content{
 	clear: both;
 	padding: 9px 14px;
 	font-size: 23px;	
-	font-family: 'BKamran';
+	font-family: 'IRANSans';
 	text-align: justify;
 	line-height:1;
 }

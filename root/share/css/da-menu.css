@@ -4,9 +4,9 @@
 	cursor: pointer;
 }
 .menu a{
-	font-family: BMITRA;
-	font-size: 22px;
-	
+	font-family: IRANSans;
+	font-size: 18px;
+
 	text-decoration: none;
 	color: #337ab7;
 }
@@ -21,7 +21,7 @@
 	top: 0px;
 	z-index: 5;
 	display: none;
-	
+
 	overflow: hidden;
 }
 .vertical-menu ul{
@@ -29,47 +29,47 @@
 }
 .vertical-menu li{
 	padding: 5px 10px 5px 0px;
-	
+
 	border-style: dotted;
 	border: 1px dotted rgba(255,255,255,0.3);
 }
 
 .vertical-menu li:hover{
-  	text-decoration: none;
-    background-color: rgba(255, 255, 255, 0.5);
-	
-	  transition-duration: 0.5s;
+	text-decoration: none;
+	background-color: rgba(255, 255, 255, 0.5);
+
+	transition-duration: 0.5s;
 }
 
 .vertical-menu a{
-	font-family: BMitra;
-	font-size: 20px;
+	font-family: IRANSans;
+	font-size: 15px;
 }
 
 .vertical-sub-menu li:hover{
-	  text-decoration: none;
-    background-color: rgb(255, 255, 255);
-	
-	  transition-duration: 0.5s;
+	text-decoration: none;
+	background-color: rgb(255, 255, 255);
+
+	transition-duration: 0.5s;
 }
 
 .vertical-sub-menu ul a{
-  color: black;
-  text-shadow: 1px 1px 10px #FFF;
-  font-size: 17px;
+	color: black;
+	text-shadow: 1px 1px 10px #FFF;
+	font-size: 17px;
 }
 .vertical-sub-menu ul{
-	 display: none;	
-	 margin-right: -10px;
-	
-	//border-top: 1px solid rgb(255,255,255);
-	//background-color: rgba(0, 0, 0, 0.1);;
+	display: none;
+	margin-right: -10px;
+
+//border-top: 1px solid rgb(255,255,255);
+//background-color: rgba(0, 0, 0, 0.1);;
 }
 
 .vertical-sub-menu ul li{
-	 background: transparent;
-	 border: none;
-	 padding-right: 20px;
+	background: transparent;
+	border: none;
+	padding-right: 20px;
 }
 
 .open  ul{
@@ -78,17 +78,17 @@
 }
 
 .horizontal-menu{
-	 background-color: transparent;
+	background-color: transparent;
 }
 .horizontal-menu li{
-	 display: inline-block;
+	display: inline-block;
 }
 .horizontal-menu li a{
 	display: inline-block;
 	padding: 10px;
 }
 .horizontal-menu li a:hover{
-  background-color: #eee;
+	background-color: #eee;
 	color: #23527c;
 	border-radius: 5px;
 }
@@ -146,7 +146,7 @@
 
 .da-edit-menu{
 	top: -5px;
-    position: relative;
+	position: relative;
 	padding: 10px;
 	text-align: justify;
 }

@@ -2218,7 +2218,7 @@ label {
 	display:inline-block;
 	max-width:100%;
 	margin-bottom:5px;
-	font-family: BKoodakBold;
+	font-family: IRANSans;
 	font-size: 18;
 }
 input[type=search] {
@@ -2270,7 +2270,7 @@ output {
 	-o-transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 	transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 
-	font-family: BMitra;
+	font-family: IRANSans;
 }
 .form-control:focus {
 	border-color:#66afe9;
@@ -2644,7 +2644,7 @@ select[multiple].input-lg,textarea.input-lg {
 	background-image:none;
 	border:1px solid transparent;
 	border-radius:4px;
-	font-family: BHoma;
+	font-family: IRANSans;
 }
 .btn.active.focus,.btn.active:focus,.btn.focus,.btn:active.focus,.btn:active:focus,.btn:focus {
 	outline:5px auto -webkit-focus-ring-color;
@@ -4033,8 +4033,8 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
 	/*margin:20px 0;*/
 	border-radius:4px;
 
-	font-family: BArshia;
-	font-size: 20px;
+	font-family: IRANSans;
+	font-size: 15px;
 }
 .pagination>li {
 	display:inline
@@ -5053,7 +5053,7 @@ button.close {
 .modal-title {
 	margin:0;
 	/*! line-height:1.42857143; */
-	font-family: BHoma;
+	font-family: IRANSans;
 }
 .modal-body {
 	position:relative;
@@ -5107,8 +5107,8 @@ button.close {
 	position:absolute;
 	z-index:1070;
 	display:block;
-	font-family:BMitra;
-	font-size:14px;
+	font-family:IRANSans;
+	font-size:12px;
 	font-style:normal;
 	font-weight:400;
 	line-height:1.42857143;

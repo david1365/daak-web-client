@@ -73,7 +73,7 @@
     </div>
 </div>
 
-<img id="agha" src="../../share/images/agha.png" alt="عکس آقا">
+<!--<img id="agha" src="../../share/images/agha.png" alt="عکس آقا">-->
 
 <!-- jquery -->
 <script src="../../share/scripts/jQuery/jquery-3.1.1.min.js"></script>

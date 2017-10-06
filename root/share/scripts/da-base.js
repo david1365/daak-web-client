@@ -827,7 +827,7 @@
 			if ($(this).attr("src") == "../../share/images/educational.png"){
 				  $(this).cssAnimate("flip", function(target){
 					  target.cssAnimate("rubberBand", function(target){
-						  target.attr("src", "../../share/images/white.RI.C.I.D.Police.png");
+						  target.attr("src", "../../share/images/white.educational.png");
 						  $("#logout li").show();
 					  });				  
 				  });
@@ -844,7 +844,7 @@
 				if (!container.is(e.target) // if the target of the click isn't the container...
 					&& container.has(e.target).length === 0) // ... nor a descendant of the container
 				{
-					if (container.attr("src") == "../../share/images/white.RI.C.I.D.Police.png"){
+					if (container.attr("src") == "../../share/images/white.educational.png"){
 						$("#logout li").hide();
 						
 						container.cssAnimate("flip", function(target){

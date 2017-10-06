@@ -1,59 +1,64 @@
 /*--v-david 1395-07-6*/
 * {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
-#agha{
-	position: fixed;
-	left: 10px;
-	top: 100%;
-	top: -webkit-calc(100% - 311px);
-	top: -webkit-touch-calc(100% - 311px);
-	top: -webkit-user-calc(100% - 311px);
-	top: -khtml-calc(100% - 311px);
-	top: -moz-calc(100% - 311px);
-	top: calc(100% - 311px);
-	top: -o-calc(100% - 311px);
-	top: -ms-calc(100% - 311px);
+/*#agha{*/
+/*position: fixed;*/
+/*left: 10px;*/
+/*top: 100%;*/
+/*top: -webkit-calc(100% - 311px);*/
+/*top: -webkit-touch-calc(100% - 311px);*/
+/*top: -webkit-user-calc(100% - 311px);*/
+/*top: -khtml-calc(100% - 311px);*/
+/*top: -moz-calc(100% - 311px);*/
+/*top: calc(100% - 311px);*/
+/*top: -o-calc(100% - 311px);*/
+/*top: -ms-calc(100% - 311px);*/
 
-	z-index: 0;
-}
+/*z-index: 0;*/
+/*}*/
 
 #body {
-	 /* margin: 0;
-	  padding: 0;*/
-	background-image: url("../images/iran-flag.png");
-	background-repeat: no-repeat;
+	/* margin: 0;
+     padding: 0;*/
+	background-image: url("../images/back_image.png");
+
 	background-position: center;
 	background-attachment: fixed;
 	background-color: black;
+
 }
 
 #wrap {
-  margin: 0 auto 30px;
+	margin: 0 auto 30px;
 }
 
 #regbar {
-  height: 67px;
-  /*background: #34495e;*/
-  background-color: rgba(52,73,94, 0.5);
-  
-  margin-top: 45px;
+	height: 67px;
+	/*background: #34495e;*/
+	background-color: rgba(52,73,94, 0.5);
+
+	margin-top: 45px;
 }
 
 #navthing {
-  margin-left: 50px;
+	margin-left: 50px;
 }
 
 #title-container {
-	
+
 }
 
 #enter {
 	float: right;
-	margin-top: -30px;	
+	margin-top: -30px;
 	width: 10%;
+}
+
+#loginform {
+	font-size: 25px !important;
 }
 
 #agahi-image-big-dev {
@@ -78,22 +83,22 @@
 }
 
 #title {
-	font-family: IranNastaliq;
-  	font-size: 50px;
+	font-family: IRANSans;
+	font-size: 50px;
 	width: 80%;
 	color: white;
 	text-align: center;
-	
+
 	float: right;
 }
 
 h2 {
-  padding: 20px;
-  color: #ecf0f1;
+	padding: 20px;
+	color: #ecf0f1;
 }
 
 fieldset {
-  border: none;
+	border: none;
 }
 fieldset label {
 	color: silver;
@@ -101,10 +106,10 @@ fieldset label {
 
 #version{
 	float: left;
-	font-family: BHoma;
+	font-family: IRANSans, BKoodakBold-number;
 	font-size: 14px;
 	color: orange;
-	margin-left: -18px;
+	margin-left: -25px;
 	margin-top: -60px;
 	-ms-transform: rotate(-90deg); /* IE 9 */
 	-webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
@@ -112,100 +117,100 @@ fieldset label {
 }
 
 .login {
-  /*position: relative;*/
-  position: absolute;
-  width: 350px;
-  display: none;
-  
-  clear: both;
-  top:110px;
-  right: 5px;
-  z-index: 1;
+	/*position: relative;*/
+	position: absolute;
+	width: 350px;
+	display: none;
+
+	clear: both;
+	top:110px;
+	right: 5px;
+	z-index: 1;
 }
 
 .arrow-up {
-  width: 0;
-  height: 0;
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-  border-bottom: 15px solid #ECF0F1;
-  /*left: 10%;*/
-  right: 10px;
-  position: absolute;
-  top:-15px;
+	width: 0;
+	height: 0;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-bottom: 15px solid #ECF0F1;
+	/*left: 10%;*/
+	right: 10px;
+	position: absolute;
+	top:-15px;
 }
 
 .formholder {
-  /*background: #ecf0f1;*/
-  width: 350px;
-  border-radius: 5px;
-  padding-top: 5px;
-  
-  background-color: rgba(52,73,94, 0.5);
+	/*background: #ecf0f1;*/
+	width: 350px;
+	border-radius: 5px;
+	padding-top: 5px;
+
+	background-color: rgba(52,73,94, 0.5);
 }
 .formholder input[type="text"], .formholder input[type="password"] {
-  padding: 7px 5px;
-  margin-bottom: 10px;
-  width: 100%;
-  display: block;
-  font-size: 18px;
-  border-radius: 10px;
-  border: none;
-  -webkit-transition: 0.3s linear;
-  -moz-transition: 0.3s linear;
-  -o-transition: 0.3s linear;
-  transition: 0.3s linear;
-  
-  text-align: center;
+	padding: 7px 5px;
+	margin-bottom: 10px;
+	width: 100%;
+	display: block;
+	font-size: 18px;
+	border-radius: 10px;
+	border: none;
+	-webkit-transition: 0.3s linear;
+	-moz-transition: 0.3s linear;
+	-o-transition: 0.3s linear;
+	transition: 0.3s linear;
+
+	text-align: center;
 }
 .formholder input[type="text"]:focus, .formholder input[type="password"]:focus {
-  outline: none;
-  box-shadow: 0 0 1.5px 1.5px gold /*#1abc9c*/;
+	outline: none;
+	box-shadow: 0 0 1.5px 1.5px gold /*#1abc9c*/;
 }
 .formholder input[type="submit"] {
-  background: #1abc9c;
-  padding: 10px;
-  font-size: 30px;
-  display: block;
-  width: 100%;
-  border: none;
-  color: #fff;
-  border-radius: 5px;
-  
-  font-family: BArshia;
-  font-weight: bold;
+	background: #1abc9c;
+	padding: 10px;
+	font-size: 25px;
+	display: block;
+	width: 100%;
+	border: none;
+	color: #fff;
+	border-radius: 5px;
+
+	font-family: IRANSans;
+	font-weight: bold;
 }
 .formholder input[type="submit"]:hover {
-  background: #1bc6a4;
+	background: #1bc6a4;
 }
 
 .randompad {
-  padding: 10px;
+	padding: 10px;
 }
 
 .green {
-  color: #1abc9c;
+	color: #1abc9c;
 }
 
 label, a{
-	font-family: BArshia;
-	font-size: 35px;
+	font-family: IRANSans;
+	font-size: 20px;
 	font-weight: 200;
 }
 
 a {
-  color: #ecf0f1;
-  text-decoration: none;
-  font-weight: 700;
+	color: #ecf0f1;
+	text-decoration: none;
+	font-weight: 700;
 }
 a:hover, a:FOCUS, a:VISITED{
-  color: #1abc9c;
-  text-decoration: none;
+	color: #1abc9c;
+	text-decoration: none;
 }
 
 
 @media (max-width: 640px){
-	
+
 	#title {
 		font-size: 40px;
 		padding-top: 10px;
@@ -224,41 +229,41 @@ a:hover, a:FOCUS, a:VISITED{
 		display: none;
 	}
 	.login {
-		display: block;	  
+		display: block;
 		position: static;
-		width: 100%;			  
+		width: 100%;
 		clear: both;
 	}
-		
+
 	#regbar {
-	    margin-top: 0px;
+		margin-top: 0px;
 	}
-	
+
 	#navthing {
-	    margin-left: 0px;
+		margin-left: 0px;
 	}
-	
+
 	#title {
 		font-size: 25px;
 		padding-top: 20px;
 		clear: both;
 		width: 100%;
 	}
-	
+
 	#enter {
 		display: none;
 		clear: both;
 	}
-	
+
 	#agahi-image-big-dev{
 		clear: both;
 		width: 100%;
 		text-align: center;
 		margin-top: 0px;
-		
+
 		background-color: rgb(128, 181, 108);
-	} 
-	
+	}
+
 	#title-container {
 		text-align: center;
 		width: 100%;

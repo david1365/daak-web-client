@@ -113,7 +113,7 @@ h2 {
 
 
 /*label, a{
-	font-family: BArshia;
+	font-family: IRANSans;
 	font-size: 23px;
 	font-weight: 5px;
 }
@@ -129,7 +129,7 @@ a:hover, a:FOCUS, a:VISITED{
 
 /*--bilbord-----------------------------------*/
 #title {
-	font-family: IranNastaliq;
+	font-family: IRANSans;
 	font-size: 50px;
 	width: 80%;
 	color: white;
@@ -167,7 +167,7 @@ a:hover, a:FOCUS, a:VISITED{
 	font-size: 24px;
 	color: white;
 	text-shadow: 2px 2px 5px #24659c;
-	font-family: BKamran;
+	font-family: IRANSans;
 
 	background-color: rgba(52,73,94, 0.5);
 }

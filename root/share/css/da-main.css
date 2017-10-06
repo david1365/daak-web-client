@@ -82,7 +82,7 @@ html, body {
 }
 
 .persion-num{
-	font-family: BMitra;
+	font-family: IRANSans;
 	font-weight: bold;
 	font-size: 15px;
 
@@ -94,13 +94,14 @@ html, body {
 }
 
 .da-table {
-	font-family: BKoodakBold;
+	font-family: IRANSans;
 	text-align: center;
 }
 .da-table thead{
 	background-color: rgb(255, 245, 228);
-	font-family: BHoma;
+	font-family: IRANSans;
 	font-size: 15px;
+	font-weight: bold;
 }
 .da-table thead a{
 	text-decoration: none;
@@ -122,7 +123,7 @@ html, body {
 .da-td-detail-title{
 	background-color: rgb(255, 245, 228);
 	width: 40%;
-	font-family: BHoma;
+	font-family: IRANSans;
 	font-size: 15px;
 }
 .da-td-detail-value{
@@ -130,8 +131,8 @@ html, body {
 }
 
 .da-detail{
-	font-family: BMitra;
-	font-size: 20px;
+	font-family: IRANSans;
+	font-size: 15px;
 
 	background-color: black;
 }
@@ -204,7 +205,7 @@ html, body {
 }
 
 .da-single-title{
-	font-family: BKamran !important;
+	font-family: IRANSans !important;
 	font-size: 26px;
 	font-weight: bold;
 	padding: 10px;
@@ -217,7 +218,7 @@ html, body {
 
 .da-serial-navigation-page{
 	padding: 7.5px 2px !important;
-	font-family: BMitra;
+	font-family: IRANSans;
 	font-size: 18px;
 }
 
@@ -233,7 +234,7 @@ html, body {
 }
 
 .da-parag{
-	font-family: BMitra;
+	font-family: IRANSans;
 	font-size: 18px;
 	text-align: justify;
 	padding: 15px;
@@ -243,7 +244,7 @@ html, body {
 }
 
 .da-parag-title{
-	font-family: "IranNastaliq";
+	font-family: "IRANSans";
 	font-size: 33px;
 	display: block;
 	padding: 10px 0px 0px 0px;
@@ -253,7 +254,7 @@ html, body {
 	color: red;
 }
 .da-parag .da-number{
-	font-family: BKoodakBold !important;
+	font-family: IRANSans !important;
 }
 
 .da-header, .da-person-detail, .da-section{
@@ -263,7 +264,7 @@ html, body {
 }
 
 .da-header > .da-titr{
-	font-family: BHoma;
+	font-family: IRANSans;
 	font-size: 20px;
 	background-color: rgba(0, 0, 0, 0.6);
 	padding: 5px;
@@ -274,14 +275,14 @@ html, body {
 .da-header > .da-titr .da-number{
 	color: #ffbd00;
 	font-size: 23px;
-	font-family: BKoodakBold !important;
+	font-family: IRANSans !important;
 }
 
 .da-person-detail-font{
-	font-family: BHoma !important;
+	font-family: IRANSans !important;
 }
 .da-person-detail-font span{
-	font-family: BKoodakBold !important;
+	font-family: IRANSans !important;
 }
 
 .da-person-detail{
