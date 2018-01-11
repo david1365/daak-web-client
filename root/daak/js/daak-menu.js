@@ -5,10 +5,21 @@
 	};
 	
 	var verticalMenu = $('#vertical-menu');
-	$.verticalMenu = verticalMenu
+	$.verticalMenu = verticalMenu;
 	
 	$.verticalMenuClosed = true;
-	$.verticalMenuMoving = false;	
+	$.verticalMenuMoving = false;
+
+    $.verticalMenu.find('.daak-search:first').keyup(function () {
+    	var self = $(this);
+    	$.verticalMenu.find('.daak-vertical-sub-menu').hide();
+        $.verticalMenu.find('a').each(function () {
+        	console.log($(this).text().trim().indexOf(self.val().trim()) + ',' + $(this).text().trim() + ',' + self.val().trim());
+			if ($(this).text().trim().indexOf(self.val().trim()) != -1){
+                $(this).parents('.daak-vertical-sub-menu:first').show();
+			}
+        })
+    });
 	
 	$.openVerticalMenu = function(){
 		if (($.verticalMenuClosed) && ($.verticalMenuMoving == false)){
