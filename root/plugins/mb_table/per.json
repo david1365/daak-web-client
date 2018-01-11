@@ -1,0 +1,24 @@
+
+{
+	"sEmptyTable":   	"داده ای برای نمایش وجود ندارد",
+	"sInfo":         	"_START_ تا _END_ از _TOTAL_ رکورد",
+	"sInfoEmpty":    	"0 تعداد 0 از 0 رکورد",
+	"sInfoFiltered": 	"(gefiltert von _MAX_ EintrÃ¤gen)",
+	"sInfoPostFix":  	"",
+	"sInfoThousands":  	".",
+	"sLengthMenu":   	"_MENU_ رکورد",
+	"sLoadingRecords": 	"در حال دریافت اطلاعات...",
+	"sProcessing":   	"لطفا منتظر باشید...",
+	"sSearch":       	"جســتجو: ",
+	"sZeroRecords":  	"داده ای برای نمایش وجود ندارد",
+	"oPaginate": {
+		"sFirst":    	"ابتدا",
+		"sPrevious": 	"قبلی",
+		"sNext":     	"بعدی",
+		"sLast":     	"انتها"
+	},
+	"oAria": {
+		"sSortAscending":  ": مرتب سازس صعودی",
+		"sSortDescending": ": مرتب سازی نزولی"
+	}
+}
