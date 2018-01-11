@@ -1,0 +1,149 @@
+@CHARSET "UTF-8";
+/*--v-david 1395-07-6*/
+/*--pnotify--*/
+
+.ui-pnotify-action-bar{
+	float: left;
+}
+.ui-pnotify-text, .ui-pnotify-title {
+	font-family: BKoodakBold-number, IRANSans;
+}
+
+.ui-pnotify-text {
+	font-size: 18px;
+}
+
+.ui-pnotify-title {
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.ui-pnotify-icon, .ui-pnotify-icon span {
+	float: right;
+	margin-right: .2em;
+
+	margin-left: 4px;
+	margin-top: -3px;
+}
+
+.ui-pnotify-closer, .ui-pnotify-sticker {
+	float: left;
+}
+
+.ui-pnotify-container{
+	direction: rtl;
+	padding-top: 26px;
+	height: auto;
+}
+
+
+/*--bootstrap--*/
+.checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"], .radio input[type="radio"], .radio-inline input[type="radio"]{
+	position: static;
+	margin-left: 5px;
+}
+
+.glyphicon {
+	font-size: 14px;
+}
+
+.dropdown-menu {
+	text-align: justify !important;
+	background-color: rgba(255, 255, 255, 0.85);
+}
+
+.modal-body {
+	padding: 15px;
+}
+
+.modal-footer {
+	padding: 10px 0px 0px 0px;
+}
+
+/*padding: 5px;
+
+max-width: 500px;
+
+column-count: 3;
+-moz-column-count: 3;
+-webkit-column-count: 3;
+-o-column-count: 3;
+-ms-column-count: 3;
+
+column-gap: 1px;
+-moz-column-gap: 1px;
+-o-column-gap: 1px;
+-webkit-column-gap: 1px;
+-ms-column-gap: 1px;
+
+column-rule: 1px dashed #a1a7aa;
+-ms-column-rule: 1px dashed #a1a7aa;
+-o-column-rule: 1px dashed #a1a7aa;
+-webkit-column-rule: 1px dashed #a1a7aa;
+-moz-column-rule: 1px dashed #a1a7aa;*/
+
+.dropdown-menu > li{
+	/*display: block;
+	
+	
+	float: right;
+	margin: 0px 2px;
+	
+	
+	width: 45%;*/
+}
+
+.dropdown-menu > li > a {
+	font-size: 16px !important;
+	font-family: IRANSans !important;
+	/*padding: 2px 2px;
+	
+	
+	
+	width: -moz-max-content;
+	width: -o-max-content;
+	width: -ms-max-content;	
+	width: -webkit-max-content;
+	width: max-content;*/
+
+	transition-duration: 0.4s;
+}
+
+.dropdown-menu > li > a:focus,
+.dropdown-menu > li > a:hover{
+	background-color: #c4c8cb;
+}
+.nav-pills > li{
+	float: right;
+}
+
+/*.alert-success {
+	font-family: IRANSans;
+	font-size: 50px;
+	background-color: rgba(255,0,0,0.5);
+	
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+/*.alert-danger {
+	
+}
+
+.alert-warning {
+	
+}
+
+.alert-info {
+	background-color: rgba(217,237,247, 0.5);
+}*/
+
+.form-control {
+	font-size: 15px !important;
+}
+
+.alert h4 {
+	margin-top: -8px;
+	color: inherit;
+}
