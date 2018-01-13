@@ -834,7 +834,7 @@
 			if(down){
 				//timer++;
 
-				$.fn.yScrolled = true;
+                $(this).yScrolled = true;
 				var min = scrollTop + (y - (e.pageY || touchobj.clientY));
 				$(this).scrollTop(min);
 
@@ -847,7 +847,7 @@
 				//}
 			}
 			else{
-				$.fn.yScrolled = false;
+                $(this).yScrolled = false;
 			}
 		});
 

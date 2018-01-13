@@ -140,7 +140,7 @@
     }
 	
 	$(verticalMenu).find("li").each(function(index){
-			$(this).bind("click touchstart", function(e){
+			$(this).bind("click", function(e){
 				if ($(verticalMenu).yScrolled == false){
 					if ($(this).hasClass('daak-vertical-sub-menu')){
 						e.stopPropagation();
