@@ -24,8 +24,21 @@
         $.verticalMenu.searchButton.val('');
 
         $.verticalMenu.find('.daak-vertical-sub-menu').show();
+        $.verticalMenu.removeHighlights();
+    }
+
+    $.fn.removeHighlight = function () {
+        var icon = $(this).find('span:first');
+        var text = $(this).text();
+
+        $(this).html('');
+        $(this).append(icon);
+        $(this).append(text);
+    }
+
+    $.verticalMenu.removeHighlights = function () {
         $.verticalMenu.find('a').each(function () {
-            $(this).html($(this).text());
+           $(this).removeHighlight();
         })
     }
 
@@ -37,15 +50,20 @@
         })
 
         $.verticalMenu.find('a').each(function () {console.log($(this).text())
-        	$(this).html($(this).text());
+            $(this).removeHighlight();
 
-        	var textIndexOf = $(this).text().trim().indexOf(self.val().trim());
+        	var inputValue = self.val();
+        	var textIndexOf = $(this).text().trim().indexOf(inputValue.trim());
 			if (textIndexOf != -1) {
 				var parentMenus = $(this).parentMenus();
 				var parentLi = $(this).parents('li:first');
 
 				var text = $(this).text();
-                $(this).html(text.replace(self.val(), '<span class="daak-highlight">' + self.val().trim() + '</span>'));
+				var icon = $(this).find('span:first');
+                $(this).html('');
+                $(this).append(icon);
+                $(this).append(text.replace(inputValue, '<span class="daak-highlight">' + inputValue + '</span>'));
+
 
 				parentMenus.show();
 				parentMenus.addClass("open");
