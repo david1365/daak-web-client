@@ -10,20 +10,24 @@
 	$.verticalMenuClosed = true;
 	$.verticalMenuMoving = false;
 
-    $.verticalMenu.find('.daak-search:first').keyup(function () {
-    	var self = $(this);
-    	$.verticalMenu.find('.daak-vertical-sub-menu').hide();
-        $.verticalMenu.find('a').each(function () {
-        	console.log($(this).text().trim().indexOf(self.val().trim()) + ',' + $(this).text().trim() + ',' + self.val().trim());
-			if ($(this).text().trim().indexOf(self.val().trim()) != -1){
-                $(this).parents('.daak-vertical-sub-menu:first').show();
-			}
-        })
-    });
+    $.verticalMenu.searchButton = $.verticalMenu.find('.daak-search:first');
+
+    // $.verticalMenu.searchButton.keyup(function () {
+    // 	var self = $(this);
+    // 	$.verticalMenu.find('.daak-vertical-sub-menu').hide();
+    //     $.verticalMenu.find('a').each(function () {
+		// 	if ($(this).text().trim().indexOf(self.val().trim()) != -1) {
+    //             $(this).parents('.daak-vertical-sub-menu:first').show('slow');
+		// 	}
+    //     })
+    // });
+
+
 	
 	$.openVerticalMenu = function(){
 		if (($.verticalMenuClosed) && ($.verticalMenuMoving == false)){
 			$.verticalMenuMoving = true;
+            // $.verticalMenu.searchButton.val('');
 			
 			$(verticalMenu).show();			
 			$(verticalMenu).cssAnimate("slideInRight", function(target){
@@ -65,19 +69,35 @@
 	// 		$.closeVerticalMenu();
 	// 	}
 	// });
+
+	$.fn.openSubMenu = function () {
+        $(this).addClass("open");
+        $(this).find("ul:first").hide();
+        $(this).find("ul:first").fadeToggle('slow');
+    }
+
+    $.fn.closeSubMenu = function () {
+		$(this).removeClass("open");
+    }
+
+    $.fn.subMenus = function () {//return [daak-vertical-sub-menu]s in same zone
+		return $(this).find(".daak-vertical-sub-menu");
+    }
 	
 	$(verticalMenu).find("li").each(function(index){
 			$(this).bind("click", function(e){
 				if ($(verticalMenu).yScrolled == false){
 					if ($(this).hasClass('daak-vertical-sub-menu')){
 						e.stopPropagation();
-						$(verticalMenu).find("li").each(function(index){				
-								$(this).removeClass("open");
+
+						var parentMenu = $(this).parents('.daak-vertical-sub-menu:first');
+                        parentMenu = parentMenu.length > 0 ? parentMenu : verticalMenu;
+                        $(parentMenu).subMenus().each(function(index){
+							$(this).closeSubMenu();
 						});
-				
-						$(this).addClass("open");
-						$(this).find("ul:first").hide();
-						$(this).find("ul:first").fadeToggle('slow');
+
+
+                        $(this).openSubMenu();
 					}
 					else{
 						$.closeVerticalMenu();
