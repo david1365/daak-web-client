@@ -39,11 +39,9 @@
                 $(this).html(text.replace(self.val(), '<span class="daak-highlight">' + self.val().trim() + '</span>'));
 
 				parentMenus.show();
-				// alert(parentLi.hasClass('daak-vertical-sub-menu'))
-				// if (!parentLi.hasClass('daak-vertical-sub-menu')) {
-                    parentMenus.addClass("open");
-                // }
-                parentLi.cssAnimate("pulse");
+				parentMenus.addClass("open");
+
+				parentLi.cssAnimate("pulse");
                 parentLi.hover();
 			}
         })
@@ -52,7 +50,7 @@
 	$.openVerticalMenu = function(){
 		if (($.verticalMenuClosed) && ($.verticalMenuMoving == false)){
 			$.verticalMenuMoving = true;
-            // $.verticalMenu.searchButton.val('');
+            // $.verticalMenu.searchButton.keyup();
 			
 			$(verticalMenu).show();			
 			$(verticalMenu).cssAnimate("slideInRight", function(target){
