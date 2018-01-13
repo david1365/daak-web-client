@@ -805,8 +805,9 @@
 		});
 
 		$(this).bind("mousedown touchstart", function(e){
+			var touchobj = e.changedTouches[0];
 			down = true;
-			y = e.pageY;
+			y = e.pageY || touchobj.clientY;
 			scrollTop = $(this).scrollTop();
 		});
 
@@ -828,11 +829,13 @@
 		});
 
 		$(this).bind("mousemove touchmove", function(e){
+            var touchobj = e.changedTouches[0];
+
 			if(down){
 				//timer++;
 
 				$.fn.yScrolled = true;
-				var min = scrollTop + (y - e.pageY);
+				var min = scrollTop + (y - (e.pageY || touchobj.clientY));
 				$(this).scrollTop(min);
 
 				scrlTopWheel = $(this).scrollTop();
