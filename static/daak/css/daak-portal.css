@@ -346,13 +346,13 @@ a:hover, a:FOCUS, a:VISITED{
 }
 
 @media (max-width: 669px){
-	.daak-search{
+	.daak-search-small-screen{
 		width: 150px;
 	}
 }
 
 @media (max-width: 616px){
-	.daak-search{
+	.daak-search-small-screen{
 		display: none;
 	}
 }
