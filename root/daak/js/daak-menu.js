@@ -49,7 +49,7 @@
 			$(this).closeSubMenu();
         })
 
-        $.verticalMenu.find('a').each(function () {console.log($(this).text())
+        $.verticalMenu.find('a').each(function () {
             $(this).removeHighlight();
 
         	var inputValue = self.val();
