@@ -12,17 +12,31 @@
 
     $.verticalMenu.searchButton = $.verticalMenu.find('.daak-search:first');
 
-    // $.verticalMenu.searchButton.keyup(function () {
-    // 	var self = $(this);
-    // 	$.verticalMenu.find('.daak-vertical-sub-menu').hide();
-    //     $.verticalMenu.find('a').each(function () {
-		// 	if ($(this).text().trim().indexOf(self.val().trim()) != -1) {
-    //             $(this).parents('.daak-vertical-sub-menu:first').show('slow');
-		// 	}
-    //     })
-    // });
+    $.fn.parentMenu = function () {
+       return $(this).parents('.daak-vertical-sub-menu:first');
+    }
 
+    $.verticalMenu.searchButton.keyup(function () {
+    	var self = $(this);
+        $.verticalMenu.find('.daak-vertical-sub-menu').hide();
+    	$.verticalMenu.find('.daak-vertical-sub-menu').each(function () {
+			$(this).closeSubMenu();
+        })
 
+        $.verticalMenu.find('a').each(function () {
+			if ($(this).text().trim().indexOf(self.val().trim()) != -1) {
+				var parentMenu = $(this).parentMenu();
+				var parentLi = $(this).parents('li:first');
+				parentMenu.show();
+				// alert(parentLi.hasClass('daak-vertical-sub-menu'))
+				if (!parentLi.hasClass('daak-vertical-sub-menu')) {
+                    parentMenu.addClass("open");
+                }
+                parentLi.cssAnimate("pulse");
+                parentLi.hover();
+			}
+        })
+    });
 	
 	$.openVerticalMenu = function(){
 		if (($.verticalMenuClosed) && ($.verticalMenuMoving == false)){
@@ -54,8 +68,6 @@
 		$(verticalMenu).yScrolling();
 		
 	});
-	
-	
 	
 	$( document ).scroll(function() {
 		$(verticalMenu).cssAnimate("zoomOut", function(target){
@@ -90,7 +102,7 @@
 					if ($(this).hasClass('daak-vertical-sub-menu')){
 						e.stopPropagation();
 
-						var parentMenu = $(this).parents('.daak-vertical-sub-menu:first');
+						var parentMenu = $(this).parentMenu();
                         parentMenu = parentMenu.length > 0 ? parentMenu : verticalMenu;
                         $(parentMenu).subMenus().each(function(index){
 							$(this).closeSubMenu();
