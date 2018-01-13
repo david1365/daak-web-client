@@ -16,6 +16,10 @@
        return $(this).parents('.daak-vertical-sub-menu:first');
     }
 
+    $.fn.parentMenus = function () {
+        return $(this).parents('.daak-vertical-sub-menu');
+    }
+
     $.verticalMenu.searchButton.keyup(function () {
     	var self = $(this);
         $.verticalMenu.find('.daak-vertical-sub-menu').hide();
@@ -25,12 +29,12 @@
 
         $.verticalMenu.find('a').each(function () {
 			if ($(this).text().trim().indexOf(self.val().trim()) != -1) {
-				var parentMenu = $(this).parentMenu();
+				var parentMenus = $(this).parentMenus();
 				var parentLi = $(this).parents('li:first');
-				parentMenu.show();
+				parentMenus.show();
 				// alert(parentLi.hasClass('daak-vertical-sub-menu'))
 				if (!parentLi.hasClass('daak-vertical-sub-menu')) {
-                    parentMenu.addClass("open");
+                    parentMenus.addClass("open");
                 }
                 parentLi.cssAnimate("pulse");
                 parentLi.hover();
