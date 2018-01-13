@@ -43,7 +43,7 @@
     }
 
     $.verticalMenu.searchButton.keyup(function (event) {
-       if (event.which == 27){
+       if (event.which == 27){//ESC
            $(this).val('');
            $.verticalMenu.defualt();
 
