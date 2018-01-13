@@ -42,7 +42,14 @@
         })
     }
 
-    $.verticalMenu.searchButton.keyup(function () {
+    $.verticalMenu.searchButton.keyup(function (event) {
+       if (event.which == 27){
+           $(this).val('');
+           $.verticalMenu.defualt();
+
+           return false;
+	   }
+
     	var self = $(this);
         $.verticalMenu.find('.daak-vertical-sub-menu').hide();
     	$.verticalMenu.find('.daak-vertical-sub-menu').each(function () {
