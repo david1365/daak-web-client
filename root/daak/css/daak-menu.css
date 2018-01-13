@@ -209,6 +209,13 @@
 	text-align: center;
 }
 
+.daak-highlight {
+    box-shadow: 0px 0px 9px #9e9393;
+    border-radius: 6px;
+    font-size: inherit !important;
+    padding-left: 0px !important;
+}
+
 @media (max-width: 505px){
 	.daak-search-menu{
 		min-width: 100% !important;
