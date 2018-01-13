@@ -804,13 +804,13 @@
 			}
 		});
 
-		$(this).bind("mousedown touchenter", function(e){
+		$(this).bind("mousedown touchstart", function(e){
 			down = true;
 			y = e.pageY;
 			scrollTop = $(this).scrollTop();
 		});
 
-		$(this).bind("mouseup touchleave", function(e){
+		$(this).bind("mouseup touchend", function(e){
 			down = false;
 
 			var maxScrollTop = this.scrollHeight - this.clientHeight;
