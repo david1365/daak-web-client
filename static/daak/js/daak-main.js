@@ -6,6 +6,10 @@
 	$.elementCount = 0;
 	$.elements = {};
 
+	$.fn.changedTouches = function (index) {
+		return this[0].changedTouches ? this[0].changedTouches[index] : undefined;
+    }
+
 //-----------------------------------------------
 	$.fn.daak = function (attrData) {
 		return $(this).attr("daak-" + attrData);
@@ -805,7 +809,7 @@
 		});
 
 		$(this).bind("mousedown touchstart", function(e){
-			var touchobj = e.changedTouches[0];
+			var touchobj =  $(e).changedTouches(0);
 			down = true;
 			y = e.pageY || touchobj.clientY;
 			scrollTop = $(this).scrollTop();
@@ -829,12 +833,12 @@
 		});
 
 		$(this).bind("mousemove touchmove", function(e){
-            var touchobj = e.changedTouches[0];
+            var touchobj =  $(e).changedTouches(0);
 
 			if(down){
 				//timer++;
 
-                $(this).yScrolled = true;
+                $.fn.yScrolled = true;
 				var min = scrollTop + (y - (e.pageY || touchobj.clientY));
 				$(this).scrollTop(min);
 
@@ -847,7 +851,7 @@
 				//}
 			}
 			else{
-                $(this).yScrolled = false;
+                $.fn.yScrolled = false;
 			}
 		});
 
