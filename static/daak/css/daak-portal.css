@@ -19,7 +19,7 @@ body {
 }
 
 .daak-wrapper header {
-	position: fixed;
+	position: relative;
 	margin: 0;
 	padding-top: 10px;
 	box-shadow: 0 2px 4px 3px #888888;
@@ -192,6 +192,7 @@ body {
 }
 
 .daak-container{
+	overflow: hidden;
 	background-image: url("../images/back_image.png");
 	background-size: 100px;
 	background-attachment: fixed;
@@ -209,7 +210,7 @@ body {
 	/*height: -o-calc(100% - 25px);*/
 	/*height: calc(100% - 25px);*/
 
-	padding: 90px 20px 20px 20px;
+	padding: 20px 20px 20px 20px;
 }
 
 h2 {
@@ -419,8 +420,8 @@ a:hover, a:FOCUS, a:VISITED{
 	}
 
 	.daak-container {
-		padding: 146px 10px 10px 10px;
-	}
+		margin-top: 69px;
+  	}
 
 	#daak-circle-menu{
 		display: block !important;

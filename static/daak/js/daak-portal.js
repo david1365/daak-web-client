@@ -791,7 +791,8 @@
 					if ($(this).urlAjaxModal()){
 						li.attr("daak-url", $(this).attr("daak-url"));
 
-						li.bind("click.li", function(){
+						li.bind("click.li", function(e){
+							e.stopPropagation();
 							selfLi.click();
 						});
 					}
@@ -894,7 +895,9 @@
 		$(".daak-container").click(function(e){
 			$.closeVerticalMenu();
 		});
-		
+
+        $(".daak-container").yScrolling();
+
 		$(".daak-brand:first").mouseover(function(){
 			$(this).cssAnimate("bounceIn");
 		});
@@ -920,11 +923,11 @@
 			}
 		});
 
-		$('[da-type="da-message_container"]').showMessage({
-			max: 'totalSize',
-			first: 'currentFirst',
-			last: 'currentLast'
-		});
+		// $('[da-type="da-message_container"]').showMessage({
+		// 	max: 'totalSize',
+		// 	first: 'currentFirst',
+		// 	last: 'currentLast'
+		// });
 
 		$('[data-toggle="tooltip"]').tooltip();
 
