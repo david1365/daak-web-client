@@ -203,14 +203,14 @@ body {
 	/*margin-top: -100px;*/
 	/*text-align: center;*/
 
-	/*height: -webkit-calc(100% - 25px);*/
-	/*height: -moz-calc(100% - 25px);*/
-	/*height: -khtml-calc(100% - 25px);*/
-	/*height: -ms-calc(100% - 25px);*/
-	/*height: -o-calc(100% - 25px);*/
-	/*height: calc(100% - 25px);*/
+    height: -webkit-calc(100% - 63px);
+    height: -moz-calc(100% - 63px);
+    height: -khtml-calc(100% - 63px);
+    height: -ms-calc(100% - 63px);
+    height: -o-calc(100% - 63px);
+    height: calc(100% - 63px);
 
-	padding: 20px 20px 20px 20px;
+	padding: 10px;
 }
 
 h2 {
@@ -421,6 +421,13 @@ a:hover, a:FOCUS, a:VISITED{
 
 	.daak-container {
 		margin-top: 69px;
+
+        height: -webkit-calc(100% - 133px);
+        height: -moz-calc(100% - 133px);
+        height: -khtml-calc(100% - 133px);
+        height: -ms-calc(100% - 133px);
+        height: -o-calc(100% - 133px);
+        height: calc(100% - 133px);
   	}
 
 	#daak-circle-menu{
