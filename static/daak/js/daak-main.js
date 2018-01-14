@@ -6,10 +6,14 @@
 	$.elementCount = 0;
 	$.elements = {};
 
+//-----------------------------------------------
 	$.fn.changedTouches = function (index) {
 		return this[0].changedTouches ? this[0].changedTouches[index] : undefined;
     }
-
+//-----------------------------------------------
+	$.byId = function(id){
+		return $('#' + id);
+	}
 //-----------------------------------------------
 	$.fn.daak = function (attrData) {
 		return $(this).attr("daak-" + attrData);
