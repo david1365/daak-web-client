@@ -176,6 +176,10 @@ body {
 	float: left;
 }
 
+.daak-search-circle-menu{
+	display: none;
+}
+
 /*#logo{*/
 /*height: 117px;*/
 /*width: 292.5px;*/
@@ -372,6 +376,12 @@ a:hover, a:FOCUS, a:VISITED{
 	}
 }
 
+@media (max-width: 368px){
+	.daak-search-circle-menu {
+		width: calc(92vw - 150px);
+	}
+}
+
 @media (max-width: 319px){
 	.daak-brand {
 		margin-top: 3.5vw;
@@ -387,13 +397,19 @@ a:hover, a:FOCUS, a:VISITED{
 
 @media (max-width: 279px){
 	.daak-brand {
-		max-width: 64vw;
+		max-width: calc(96vw - 70px);
 		font-size: 15px;
 		text-overflow: ellipsis;
 
 		/* Required for text-overflow to do anything */
 		white-space: nowrap;
 		overflow: hidden;
+	}
+}
+
+@media (max-width: 160px){
+	#daak-message{
+		display: none;
 	}
 }
 
@@ -413,6 +429,10 @@ a:hover, a:FOCUS, a:VISITED{
 	.daak-brand{
 		/* 		display: block; */
 		/* 		width: 100%; */
+	}
+
+	.daak-search-circle-menu{
+		display: inline-block;
 	}
 
 	.daak-desktop-icon span {
@@ -437,7 +457,7 @@ a:hover, a:FOCUS, a:VISITED{
 		margin-top: 12px;
 		padding: 10px;
 		clear: both;
-		text-align: center;
+		/*text-align: center;*/
 		/*! border-bottom: 1px solid #222; */
 		/* 		box-shadow: 0 4px 4px 3px #888888; */
 		margin-bottom: -4px;
@@ -517,6 +537,10 @@ a:hover, a:FOCUS, a:VISITED{
 /*}*/
 
 @media (max-width: 231px){
+	.daak-search-circle-menu {
+		display: none;
+	}
+
 	.agahi-img-container{
 		clear: both;
 		width: 100%;
