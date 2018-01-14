@@ -1,0 +1,27 @@
+@keyframes daak-zoom-up {
+    from {
+        transform: scale3d(1, 1, 1);
+    }
+
+    50% {
+        transform: scale3d(1.2, 1.2, 1.2);
+    }
+
+    to {
+        transform: scale3d(1.2, 1.2, 1.2);
+    }
+}
+
+@keyframes daak-zoom-down {
+    from {
+        transform: scale3d(1.2, 1.2, 1.2);
+    }
+
+    50% {
+        transform: scale3d(1, 1, 1);
+    }
+
+    to {
+        transform: scale3d(1, 1, 1);
+    }
+}

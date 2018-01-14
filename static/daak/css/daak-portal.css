@@ -289,6 +289,47 @@ a:hover, a:FOCUS, a:VISITED{
 /*text-shadow: 2px 2px 3px back;*/
 /*}*/
 
+.daak-desktop-icon {
+	display: inline-block;
+	cursor: pointer;
+	margin: 5px;
+
+	-webkit-animation: daak-zoom-down;
+	-moz-animation: daak-zoom-down;
+	-ms-animation: daak-zoom-down;
+	-o-animation: daak-zoom-down;
+	animation: daak-zoom-down;
+
+	animation-duration: 0.8s;
+}
+
+.daak-desktop-icon:hover {
+	-webkit-animation: daak-zoom-up;
+	-moz-animation: daak-zoom-up;
+	-ms-animation: daak-zoom-up;
+	-o-animation: daak-zoom-up;
+	animation: daak-zoom-up;
+
+	animation-duration: 0.8s;
+}
+
+.daak-desktop-icon > div{
+	display: inline-block;
+	box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 0px 30px 0 rgba(108, 111, 126, 0.5) inset;
+	border-radius: 5px;
+	padding: 0.4vw;
+}
+
+.daak-desktop-icon span{
+	font-size: 70px;
+}
+
+.daak-desktop-icon > label{
+	display: block;
+	width: 100%;
+	text-align: center;
+	font-weight: unset;
+}
 
 #sidebar-top{
 	display: none;
@@ -319,6 +360,16 @@ a:hover, a:FOCUS, a:VISITED{
 	/*margin-bottom: -4px;*/
 	/*height: 25px;*/
 /*}*/
+
+@media (max-width: 700px){
+	.daak-desktop-icon span{
+		font-size: 10vw;
+	}
+
+	.daak-desktop-icon > label{
+		font-size: 14px;
+	}
+}
 
 @media (max-width: 319px){
 	.daak-brand {
@@ -363,6 +414,14 @@ a:hover, a:FOCUS, a:VISITED{
 		/* 		width: 100%; */
 	}
 
+	.daak-desktop-icon span {
+		font-size: 45px;
+	}
+
+	.daak-container {
+		padding: 156px 10px 10px 10px;
+	}
+
 	#daak-circle-menu{
 		display: block !important;
 		width: 100%;
@@ -400,11 +459,6 @@ a:hover, a:FOCUS, a:VISITED{
 		margin-top: -16px;
 	}
 }
-
-
-
-
-
 
 
 @media (max-width: 620px){
