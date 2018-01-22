@@ -32,17 +32,16 @@
     for(var ob in window){
        var object = window[ob];
        if(object){
-           if(object.render) {
+           if(object.render){
                for(var i = 0; i < all.length; i++){
                    if(all[i].tagName == ob.toUpperCase()){
-                       var el = stringToEl(object.render);;
+                       var el = stringToEl(object.render);
                        all[i].parentNode.replaceChild(el, all[i]);
                    }
                }
            }
        }
     }
-
 
 </script>
 </body>
