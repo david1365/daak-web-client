@@ -5,6 +5,45 @@
     <title>Title</title>
 </head>
 <body>
+    <div>
+        <test1></test1>
+    </div>
+<script>
+    var test1 = {
+        render: '<div>ali abbas</div>'
+    };
 
+    function stringToEl(string) {
+        var parser = new DOMParser(),
+            content = 'text/html',
+            DOM = parser.parseFromString(string, content);
+
+        // return element
+        return DOM.body.childNodes[0];
+    }
+
+   var all = document.getElementsByTagName('*');
+//    for(var i = 0; i < all.length; i++){alert(all[i].tagName);
+////       if (window[all[i].tagName]){
+////           alert(all[i].tagName);
+////       }
+//    }
+
+    for(var ob in window){
+       var object = window[ob];
+       if(object){
+           if(object.render) {
+               for(var i = 0; i < all.length; i++){
+                   if(all[i].tagName == ob.toUpperCase()){
+                       var el = stringToEl(object.render);;
+                       all[i].parentNode.replaceChild(el, all[i]);
+                   }
+               }
+           }
+       }
+    }
+
+
+</script>
 </body>
 </html>
