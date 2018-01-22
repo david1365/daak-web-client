@@ -896,6 +896,10 @@
 			$.closeVerticalMenu();
 		});
 
+        $(".daak-wrapper:first").find('nav').children().not('.daak-horizontal-menu-container').click(function(e){
+            $.closeVerticalMenu();
+        });
+
         $(".daak-container").yScrolling();
 
 		$(".daak-brand:first").mouseover(function(){
