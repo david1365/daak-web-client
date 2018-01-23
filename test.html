@@ -6,11 +6,19 @@
 </head>
 <body>
     <div>
+        <test1 ></test1>
+    </div>
+
+    <div>
         <test1></test1>
     </div>
 <script>
+
     var test1 = {
-        render: '<div>ali abbas</div>'
+        render: '<div><input onchange="this.textChange"/></div>',
+        textChange: function () {
+            alert()
+        }
     };
 
     function stringToEl(string) {
@@ -35,6 +43,7 @@
            if(object.render){
                for(var i = 0; i < all.length; i++){
                    if(all[i].tagName == ob.toUpperCase()){
+
                        var el = stringToEl(object.render);
                        all[i].parentNode.replaceChild(el, all[i]);
                    }
