@@ -14,63 +14,21 @@
     </div>
 
 <script src="static/daak/js/daak.js"></script>
-<script>
 
+<script src="static/jquery/jquery-3.2.1.min.js"></script>
+
+<script>
     var test1 = {
         inherit: 'a, b, c',
 
         render: '<div><input onchange="textChange"/></div>',
+
         textChange: function (ev) {
             alert(ev.target.value);
-            alert(this.dom.innerHTML);
+            var input = this.querySelectorAll('input:first-child')[0];
+            alert(input.value);
         }
     };
-
-//    function stringToElement(string) {
-//        var parser = new DOMParser(),
-//            content = 'text/html',
-//            DOM = parser.parseFromString(string, content);
-//
-//        // return element
-//        return DOM.body.childNodes[0];
-//    }
-
-
-    document.addEventListener('DOMContentLoaded', function() {
-        var all = document.getElementsByTagName('*');
-//    for(var i = 0; i < all.length; i++){alert(all[i].tagName);
-////       if (window[all[i].tagName]){
-////           alert(all[i].tagName);
-////       }
-//    }
-
-        for(var ob in window){
-            var object = window[ob];
-            if(object){
-                if(object.render){
-                    for(var i = 0; i < all.length; i++){
-                        if(all[i].tagName == ob.toUpperCase()){
-
-                            var el = daak.htmlDom(object.render);
-                            object.dom = el;
-                            var input = el.querySelectorAll('input:first-child')[0];
-                            var ev = ob + '.' + input.getAttribute('onchange') + '(e);'
-                            input.removeAttribute('onchange');
-//                            input.addEventListener("keyup", function (e) {
-//                                eval(ev);
-//                            })
-
-                            daak(input).addEventListener('keyup', function (e) {
-                                eval(ev);
-                            })
-                            all[i].parentNode.replaceChild(el, all[i]);
-                        }
-                    }
-                }
-            }
-        }
-    });
-
 
 
 </script>
