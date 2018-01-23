@@ -81,7 +81,7 @@ var daak = (function ()
                             daak(input).addEventListener('keyup', function (e) {
                                 // eval(ev);
                                 var target = e.target;alert(daak(target).daakElement)
-                                daak(target).daakElement[target.getAttribute('onchange')](e);
+                                daak(target).daakElement()[target.getAttribute('onchange')](e);
 
                                 alert(daakId);
                             });
