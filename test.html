@@ -12,45 +12,66 @@
     <div>
         <test1></test1>
     </div>
+
+<script src="static/daak/js/daak.js"></script>
 <script>
 
     var test1 = {
-        render: '<div><input onchange="this.textChange"/></div>',
-        textChange: function () {
-            alert()
+        inherit: 'a, b, c',
+
+        render: '<div><input onchange="textChange"/></div>',
+        textChange: function (ev) {
+            alert(ev.target.value);
+            alert(this.dom.innerHTML);
         }
     };
 
-    function stringToEl(string) {
-        var parser = new DOMParser(),
-            content = 'text/html',
-            DOM = parser.parseFromString(string, content);
+//    function stringToElement(string) {
+//        var parser = new DOMParser(),
+//            content = 'text/html',
+//            DOM = parser.parseFromString(string, content);
+//
+//        // return element
+//        return DOM.body.childNodes[0];
+//    }
 
-        // return element
-        return DOM.body.childNodes[0];
-    }
 
-   var all = document.getElementsByTagName('*');
+    document.addEventListener('DOMContentLoaded', function() {
+        var all = document.getElementsByTagName('*');
 //    for(var i = 0; i < all.length; i++){alert(all[i].tagName);
 ////       if (window[all[i].tagName]){
 ////           alert(all[i].tagName);
 ////       }
 //    }
 
-    for(var ob in window){
-       var object = window[ob];
-       if(object){
-           if(object.render){
-               for(var i = 0; i < all.length; i++){
-                   if(all[i].tagName == ob.toUpperCase()){
+        for(var ob in window){
+            var object = window[ob];
+            if(object){
+                if(object.render){
+                    for(var i = 0; i < all.length; i++){
+                        if(all[i].tagName == ob.toUpperCase()){
 
-                       var el = stringToEl(object.render);
-                       all[i].parentNode.replaceChild(el, all[i]);
-                   }
-               }
-           }
-       }
-    }
+                            var el = daak.htmlDom(object.render);
+                            object.dom = el;
+                            var input = el.querySelectorAll('input:first-child')[0];
+                            var ev = ob + '.' + input.getAttribute('onchange') + '(e);'
+                            input.removeAttribute('onchange');
+//                            input.addEventListener("keyup", function (e) {
+//                                eval(ev);
+//                            })
+
+                            daak(input).addEventListener('keyup', function (e) {
+                                eval(ev);
+                            })
+                            all[i].parentNode.replaceChild(el, all[i]);
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+
 
 </script>
 </body>
