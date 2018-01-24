@@ -84,13 +84,6 @@ var daak = (function ()
     daak.fn.init.prototype = daak.fn;
 
     var addProperties = function (elem) {
-        // if(!elem.isDaak && elem.isDaak === undefined){
-        //     elem.isDaak = true;
-        // }
-        // else {
-        //     return false;
-        // }
-
         for(var propertyName in daak.fn){
             if (propertyName !== 'init') {
                 var property = daak.fn[propertyName];
@@ -99,8 +92,9 @@ var daak = (function ()
                     if (elem[propertyName]) {
                         elem[REAL + propertyName] = elem[propertyName];
                     }
-                    elem[propertyName] = property;
                 }
+
+                elem[propertyName] = property;
             }
         }
     }
@@ -114,7 +108,7 @@ var daak = (function ()
         return DOM.body.childNodes[0];
     }
 
-    var setId = function (elem) {
+    var traceTag = function (elem) {
         var tags = elem.querySelectorAll('*');
         // var parentId = elem.data('id');
         var ids = {};
@@ -123,8 +117,10 @@ var daak = (function ()
         for(var i = 0; i < tags.length; i++) {
             var tag = tags[i];
             var parentId = daak(tag.parentNode).data('id');
-            // alert(ids[parentId])
-            ids[parentId] = ids[parentId] && ids[parentId] !== undefined ? ids[parentId]++ : 0;
+
+            ids[parentId] = !ids[parentId] && ids[parentId] === undefined ? 0 : ids[parentId];
+            ids[parentId]++;
+
             daak(tag).data('id', parentId + '.' + ids[parentId].toString());
         }
     }
@@ -138,17 +134,29 @@ var daak = (function ()
                         if(tags[i].tagName == objectName.toUpperCase()) {
                             var daakId = '.' + counts.toString();
 
+
+                            //---- {{[\w]*}} ---- for check of entier
                             var elem = daak[daakId] = daak(object.render);
                             elem.data('id', daakId);
+                            elem.data('class', objectName);
 
-                            setId(elem);
+                            traceTag(elem);
 
+                            elem.add = object.add;
+                            elem.a = object.a;
                             // window[daak.elId].dom = window[daak.elId];
                             // elem.textChange = object.textChange;
                             //
                             var input = elem.querySelectorAll('input:first-child')[0];
+                            input.value = elem.a;
                             //  // var ev = objectName + '.' + input.getAttribute('onchange') + '(e);'
-                            //
+                            var button = elem.querySelectorAll('button:first-child')[0];
+                            daak(button).addEventListener('click', function (e) {
+                                var target = e.target;
+                                var id = '.' + daak(target).data('id').split('.')[1];
+                                daak[id][target.getAttribute('onclick').split('.')[1]](e);
+                                input.value = daak[id].a;
+                            })
                             daak(input).addEventListener('keyup', function (e) {alert(123)
                             //     // eval(ev);
                             //     var target = e.target;
