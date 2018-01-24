@@ -15,22 +15,39 @@
 
 <script src="static/daak/js/daak.js"></script>
 
-<script src="static/jquery/jquery-3.2.1.min.js"></script>
+<!--<script src="static/jquery/jquery-3.2.1.min.js"></script>-->
 
 <script>
     var test1 = {
         inherit: 'a, b, c',
 
-        render: '<div><input onchange="textChange"/></div>',
+        render: '<div>' +
+                    '<input value="{{this.a}}"/>' +
+                    '<button onclick="{{this.add}}">add</button>' +
+                    '<div>{{this.brand}}</div>' +
+                    '{{<div></div>}}' +
+                    '<div>' +
+                        '<div>' +
+                            '<button>test1</button>' +
+                            '<button>test1</button>' +
+                            '<div>' +
+                                '<input/>' +
+                                '<span>ali</span>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<button onclick="{{this.add}}">add</button>' +
+                '</div>',
 
-        textChange: function (ev) {
-            alert(ev.target.value);
-            var input = this.querySelectorAll('input:first-child')[0];
-            alert(input.value);
+        a: 1,
+        brand: 'ali mamad',
+        add: function (ev) {
+////            alert(ev.target.value);
+//            var input = this.querySelectorAll('input:first-child')[0];
+//            alert(input.value === ev.target.value);
+            this.a++;
         }
     };
-
-
 </script>
 </body>
 </html>
