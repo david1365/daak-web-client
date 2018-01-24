@@ -115,8 +115,8 @@ var daak = (function ()
             var attributeName = attribute.name;
             var attributeValue = attribute.value;
 
-            if (attributeName.startsWith('on')) {
-                if (attributeValue.startsWith('{{') && attributeValue.last('}}')) {
+            if (attributeName[0] + attributeName[1] === 'on') {
+                if (attributeValue.substr(0, 2) === '{{' && attributeValue.substr(attributeValue.length - 2, attributeValue.length)=== '}}') {
                     var eventName = attributeName.substr(2, attributeName.length);
                     var eventValue = attributeValue.substr(2, attributeName.length - 2);
                     alert(eventValue);
@@ -164,7 +164,7 @@ var daak = (function ()
                             var daakId = '.' + counts.toString();
 
 
-                            //---- {{[\w]*}} ---- for check of entier
+                            //---- ^{{[\w]*}}$ ---- for check of entier
                             var elem = daak[daakId] = daak(object.render);
                             elem.data('id', daakId);
                             elem.data('class', objectName);
