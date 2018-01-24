@@ -9,6 +9,10 @@ var daak = (function ()
 
     var counts = 0;
     const REAL ='real-';
+    // ^{{[\w]*[^\u0000-\u007F]*}}$ --- one match and unicode
+    // {{[\w]*[^\u0000-\u007F]*}} --- all match and unicode
+    const DAAK_REGEX = '/^{{[\w]*}}$/';
+    const DAAK_REGEX_MORE = '/{{[\\w]*}}/g';
 
     var isFunction = function isFunction( obj ) {
         return typeof obj === "function" && typeof obj.nodeType !== "number";
