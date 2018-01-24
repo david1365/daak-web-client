@@ -108,6 +108,31 @@ var daak = (function ()
         return DOM.body.childNodes[0];
     }
 
+    var addEvents = function (elem) {
+        var attributes = elem.attributes;
+        for(var i = 0; i < attributes.length; i++){
+            var attribute = attributes[i];
+            var attributeName = attribute.name;
+            var attributeValue = attribute.value;
+
+            if (attributeName.startsWith('on')) {
+                if (attributeValue.startsWith('{{') && attributeValue.last('}}')) {
+                    var eventName = attributeName.substr(2, attributeName.length);
+                    var eventValue = attributeValue.substr(2, attributeName.length - 2);
+                    alert(eventValue);
+                    // var eventValue =
+                    // elem.addEventListener('eventName', function (e) {
+                    //     var target = daak(e.target);
+                    //     var targetId = target.data(id);
+                    //     var parentId = targetId.substr(0, 2);
+                    //
+                    //     daak[parentId][target.getAttribute('onchange')](e);
+                    // })
+                }
+            }
+        }
+    }
+
     var traceTag = function (elem) {
         var tags = elem.querySelectorAll('*');
         // var parentId = elem.data('id');
@@ -115,13 +140,17 @@ var daak = (function ()
         // ids[parentId] = 0;
 
         for(var i = 0; i < tags.length; i++) {
-            var tag = tags[i];
+            var tag = daak(tags[i]);
+            //--add id ------------------------
             var parentId = daak(tag.parentNode).data('id');
 
             ids[parentId] = !ids[parentId] && ids[parentId] === undefined ? 0 : ids[parentId];
             ids[parentId]++;
 
-            daak(tag).data('id', parentId + '.' + ids[parentId].toString());
+            tag.data('id', parentId + '.' + ids[parentId].toString());
+            //---------------------------------
+
+            addEvents(tag);
         }
     }
 

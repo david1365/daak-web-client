@@ -20,13 +20,13 @@
         inherit: 'a, b, c',
 
         render: '<div>' +
-                    '<input value="{{this.a}}"/>' +
+                    '<input onchange="{{this.textChange}}" value="{{this.a}}"/>' +
                     '<button >add</button>' +
                     '<div>{{this.brand}}</div>' +
                     '{{<div></div>}}' +
                     '<div>' +
                         '<div>' +
-                            '<button onclick="this.add">test1</button>' +
+                            '<button onclick="{{this.add}}">test1</button>' +
                             '<button>test1</button>' +
                             '<div>' +
                                 '<input/>' +
@@ -45,6 +45,10 @@
 //            alert(input.value === ev.target.value);
             this.a++;
 //            alert(this.a)
+        },
+
+        textChange: function (e) {
+            alert('very good')
         }
     };
 </script>
