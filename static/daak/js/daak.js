@@ -9,10 +9,8 @@ var daak = (function ()
 
     var counts = 0;
     const REAL ='real-';
-    // ^{{[\w]*[^\u0000-\u007F]*}}$ --- one match and unicode
-    // {{[\w]*[^\u0000-\u007F]*}} --- all match and unicode
-    const DAAK_REGEX = '/^{{[\w]*}}$/';
-    const DAAK_REGEX_MORE = '/{{[\\w]*}}/g';
+    const DAAK_REGEX = /^{{[\w\.]*}}$/;
+    const DAAK_REGEX_MORE = /{{[\w\.]*}}/g;
 
     var isFunction = function isFunction( obj ) {
         return typeof obj === "function" && typeof obj.nodeType !== "number";
@@ -61,7 +59,7 @@ var daak = (function ()
                 elem = selector;
             }
 
-            addProperties(elem);
+            addFn(elem);
 
             return elem;
         },
@@ -87,19 +85,31 @@ var daak = (function ()
     // Give the init function the "daak" prototype for later instantiation
     daak.fn.init.prototype = daak.fn;
 
-    var addProperties = function (elem) {
-        for(var propertyName in daak.fn){
+    var createRealProperty = function (elem, propertyName) {
+        if (!elem[REAL + propertyName] && elem[REAL + propertyName] === undefined) {
+            if (elem[propertyName]) {
+                elem[REAL + propertyName] = elem[propertyName];
+            }
+        }
+    }
+
+    var addFn = function (elem) {
+        for(var propertyName in daak.fn) {
             if (propertyName !== 'init') {
                 var property = daak.fn[propertyName];
 
-                if (!elem[REAL + propertyName] && elem[REAL + propertyName] === undefined) {
-                    if (elem[propertyName]) {
-                        elem[REAL + propertyName] = elem[propertyName];
-                    }
-                }
+                createRealProperty(elem, propertyName);
 
                 elem[propertyName] = property;
             }
+        }
+    }
+
+    var addProperties = function (elem, object) {
+        for(var propertyName in object) {
+            var property = object[propertyName];
+
+            elem[propertyName] = property;
         }
     }
 
@@ -109,29 +119,44 @@ var daak = (function ()
             DOM = parser.parseFromString(string, content);
 
         // return element
-        return DOM.body.childNodes[0];
+        return DOM.body;
     }
 
     var addEvents = function (elem) {
         var attributes = elem.attributes;
-        for(var i = 0; i < attributes.length; i++){
+        for(var i = 0; i < attributes.length; i++) {
             var attribute = attributes[i];
             var attributeName = attribute.name;
             var attributeValue = attribute.value;
 
-            if (attributeName[0] + attributeName[1] === 'on') {
-                if (attributeValue.substr(0, 2) === '{{' && attributeValue.substr(attributeValue.length - 2, attributeValue.length)=== '}}') {
-                    var eventName = attributeName.substr(2, attributeName.length);
-                    var eventValue = attributeValue.substr(2, attributeName.length - 2);
-                    alert(eventValue);
-                    // var eventValue =
-                    // elem.addEventListener('eventName', function (e) {
-                    //     var target = daak(e.target);
-                    //     var targetId = target.data(id);
-                    //     var parentId = targetId.substr(0, 2);
-                    //
-                    //     daak[parentId][target.getAttribute('onchange')](e);
-                    // })
+            if (attributeValue.match(DAAK_REGEX_MORE)){
+                if (attributeName[0] + attributeName[1] === 'on') {
+                    if (!attributeValue.match(DAAK_REGEX)){
+                        console.log("daak -> Event only one match!? '<" + elem.tagName + ' ' +  attributeName + '=' + attributeValue + " ...'");
+                        continue;
+                    }
+
+                    var eventName = attributeName.substr(0, attributeName.length);
+                    var eventPerfectName = attributeName.substr(2, attributeName.length);
+                    var eventValue = attributeValue.substr(2, attributeValue.length - 4);
+                    elem.data(eventPerfectName, eventValue);
+                    elem.removeAttribute(eventName)
+
+                    elem.addEventListener(eventPerfectName, function (e) {
+                        var target = daak(e.target);
+                        var event = target.data(e.type);
+                        var targetId = target.data('id');
+                        var parentId = targetId.substr(0, 2);
+
+                        if(event.indexOf('this.') == 0){
+                            event = event.split('.')[1];
+                            daak[parentId][event](e);
+
+                            return false;
+                        }
+
+                        eval(event + '(e)');
+                    })
                 }
             }
         }
@@ -158,49 +183,30 @@ var daak = (function ()
         }
     }
 
+    var render = function () {
+        
+    }
+
     var run = function (tags) {
         for(var objectName in window){
             var object = window[objectName];
             if(object){
                 if(object.render){
-                    for(var i = 0; i < tags.length; i++){
+                    for(var i = 0; i < tags.length; i++) {
                         if(tags[i].tagName == objectName.toUpperCase()) {
                             var daakId = '.' + counts.toString();
 
-
-                            //---- ^{{[\w]*}}$ ---- for check of entier
-                            var elem = daak[daakId] = daak(object.render);
+                            var elem = daak[daakId] = daak(tags[i]);
                             elem.data('id', daakId);
                             elem.data('class', objectName);
 
+                            elem.appendChild(daak(object.render));
+
                             traceTag(elem);
 
-                            elem.add = object.add;
-                            elem.a = object.a;
-                            // window[daak.elId].dom = window[daak.elId];
-                            // elem.textChange = object.textChange;
-                            //
-                            var input = elem.querySelectorAll('input:first-child')[0];
-                            input.value = elem.a;
-                            //  // var ev = objectName + '.' + input.getAttribute('onchange') + '(e);'
-                            var button = elem.querySelectorAll('button:first-child')[0];
-                            daak(button).addEventListener('click', function (e) {
-                                var target = e.target;
-                                var id = '.' + daak(target).data('id').split('.')[1];
-                                daak[id][target.getAttribute('onclick').split('.')[1]](e);
-                                input.value = daak[id].a;
-                            })
-                            daak(input).addEventListener('keyup', function (e) {alert(123)
-                            //     // eval(ev);
-                            //     var target = e.target;
-                            //     var daakId = daak(target).daakElement().getAttribute(daakIdAttr);
-                            //     daak[daakId][target.getAttribute('onchange')](e);
-                            });
-                            //
-                            // input.removeAttribute('onchange');
+                            addProperties(elem, object);
 
-
-                            tags[i].parentNode.replaceChild(elem, tags[i]);
+                            // tags[i].parentNode.replaceChild(elem, tags[i]);
 
                             counts++;
                         }
