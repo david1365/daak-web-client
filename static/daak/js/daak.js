@@ -121,8 +121,55 @@ var daak = (function ()
         // return element
         return DOM.body;
     }
+    
+    var object2array = function (event, parentId) {
+        var eventPart = event.split('.');
+        var arrayPattern = '';
 
-    var addEvents = function (elem) {
+        eventPart.forEach(function (item, index) {
+            if (item == 'this') {
+                arrayPattern += "daak['" + parentId + "']";
+            }
+            else {
+                arrayPattern += index === 0 ? item : "['" + item + "']";
+            }
+        })
+
+       return arrayPattern;
+    }
+
+    var handleEvents = function (elem, attributeName, attributeValue) {
+        if (!attributeValue.match(DAAK_REGEX)){
+            throw ("daak -> Event only one match!? '<" + elem.tagName + ' ' +  attributeName + '=' + attributeValue + " ...'");
+        }
+
+        var eventName = attributeName.substr(0, attributeName.length);
+        var eventPerfectName = attributeName.substr(2, attributeName.length);
+        var eventValue = attributeValue.substr(2, attributeValue.length - 4);
+
+        daak[elem.data('id')][eventPerfectName] =  eventValue;
+        elem.removeAttribute(eventName);
+
+        elem.addEventListener(eventPerfectName, function (e) {
+            var target = daak(e.target);
+            var targetId = target.data('id');
+            var parentId = targetId.substr(0, 2);
+            var event = daak[targetId][e.type];
+
+            var arrayPattern = object2array(event, parentId);
+            var eventString =  arrayPattern + '(e);';
+
+            // alert(eval("daak['" + parentId + "']" + "['a']"))
+
+            eval(eventString);
+        })
+    }
+
+    handleOtherAttributes = function (elem, attributeName, attributeValue) {
+        daak[elem.data('id')][attributeName] =  attributeValue;
+    }
+
+    var handleAttributes = function (elem) {
         var attributes = elem.attributes;
         for(var i = 0; i < attributes.length; i++) {
             var attribute = attributes[i];
@@ -130,33 +177,13 @@ var daak = (function ()
             var attributeValue = attribute.value;
 
             if (attributeValue.match(DAAK_REGEX_MORE)){
-                if (attributeName[0] + attributeName[1] === 'on') {
-                    if (!attributeValue.match(DAAK_REGEX)){
-                        console.log("daak -> Event only one match!? '<" + elem.tagName + ' ' +  attributeName + '=' + attributeValue + " ...'");
-                        continue;
-                    }
+                daak[elem.data('id')] = {};
 
-                    var eventName = attributeName.substr(0, attributeName.length);
-                    var eventPerfectName = attributeName.substr(2, attributeName.length);
-                    var eventValue = attributeValue.substr(2, attributeValue.length - 4);
-                    elem.data(eventPerfectName, eventValue);
-                    elem.removeAttribute(eventName)
-
-                    elem.addEventListener(eventPerfectName, function (e) {
-                        var target = daak(e.target);
-                        var event = target.data(e.type);
-                        var targetId = target.data('id');
-                        var parentId = targetId.substr(0, 2);
-
-                        if(event.indexOf('this.') == 0){
-                            event = event.split('.')[1];
-                            daak[parentId][event](e);
-
-                            return false;
-                        }
-
-                        eval(event + '(e)');
-                    })
+                if (attributeName[0] + attributeName[1] === 'on') { // is event
+                    handleEvents(elem, attributeName, attributeValue);
+                }
+                else {
+                    handleOtherAttributes(elem, attributeName, attributeValue);
                 }
             }
         }
@@ -179,7 +206,7 @@ var daak = (function ()
             tag.data('id', parentId + '.' + ids[parentId].toString());
             //---------------------------------
 
-            addEvents(tag);
+            handleAttributes(tag);
         }
     }
 
