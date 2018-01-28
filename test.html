@@ -23,7 +23,7 @@
     var test1 = {
         inherit: 'a, b, c',
 
-        render: '<input onchange="{{this.textChange}}" value="{{this.a}}"/>' +
+        render: '<input onchange="{{this.textChange}}" onclick="{{this.al}}" value="{{this.a}}"/>' +
                 '<button >add</button>' +
                 '<div>{{this.brand}}</div>' +
                 '{{<div></div>}}' +
@@ -52,6 +52,9 @@
 
         textChange: function (e) {
             alert('very good')
+        },
+        al: function () {
+            alert('hello iran');
         }
     };
 </script>
