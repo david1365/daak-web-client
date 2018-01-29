@@ -8,7 +8,7 @@ var daak = (function ()
     };
 
     var counts = 0;
-    const DAAK_FAMILIAR = 'daak-familiar';
+    const DAAK_PATTERN = 'daak-Pattern';
     const REAL ='real-';
     const DAAK_REGEX = /^{{[\w\.]*}}$/;
     const DAAK_REGEX_MORE = /{{[\w\.]*}}/g;
@@ -139,6 +139,10 @@ var daak = (function ()
        return arrayPattern;
     }
 
+    var pickValue = function (value) {
+        return value.substr(2, value.length - 4);
+    }
+
     var handleEvents = function (elem, attributeName, attributeValue) {
         if (!attributeValue.match(DAAK_REGEX)){
             throw ("daak -> Event only one match!? '<" + elem.tagName + ' ' +  attributeName + '=' + attributeValue + " ...'");
@@ -146,7 +150,7 @@ var daak = (function ()
 
         var eventName = attributeName;/*.substr(0, attributeName.length);*/
         var eventPerfectName = attributeName.substr(2, attributeName.length);
-        var eventValue = attributeValue.substr(2, attributeValue.length - 4);
+        var eventValue = pickValue(attributeValue);
 
         daak[elem.data('id')][eventPerfectName] =  eventValue;
 
@@ -166,14 +170,16 @@ var daak = (function ()
     }
 
     handleOtherAttributes = function (elem, attributeName, attributeValue) {
-        daak[elem.data('id')][attributeName] =  attributeValue;
-        // daak[DAAK_FAMILIAR][elem.data('id')] =
+        daak[DAAK_PATTERN][elem.data('id')][attributeName] = attributeValue;
 
+
+        daak[elem.data('id')][attributeName] = attributeValue;
     }
 
     var handleAttributes = function (elem) {
         var attributes = elem.attributes;
         daak[elem.data('id')] = {};
+        daak[DAAK_PATTERN][elem.data('id')] = {};
         var removeAttributes = {};
 
         for(var i = 0; i < attributes.length; i++) {
@@ -225,7 +231,7 @@ var daak = (function ()
     }
 
     var run = function (tags) {
-        daak[DAAK_FAMILIAR] = {};
+        daak[DAAK_PATTERN] = {};
 
         for(var objectName in window){
             var object = window[objectName];
