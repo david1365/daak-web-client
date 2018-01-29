@@ -45,14 +45,17 @@ var daak = (function ()
                 return this;
             }
 
-            if ( typeof selector === "string" ) {
-                if ( selector[ 0 ] === "<" &&
-                    selector[ selector.length - 1 ] === ">" &&
+            if (typeof selector === "string") {
+                if ( selector[0] === "<" &&
+                    selector[selector.length - 1] === ">" &&
                     selector.length >= 3 ) {
 
                     elem = daak.parseHTML(selector);
                 }
-                else{
+                else if (selector[0] === '#') {
+                    elem = document.getElementById(selector.substr(1, selector.length - 1));
+                }
+                else {
                     elem = document.querySelectorAll(selector);
                 }
             }
@@ -143,6 +146,10 @@ var daak = (function ()
         return value.substr(2, value.length - 4);
     }
 
+    var pickParentId = function (id) {
+        return id.substr(0, 2);
+    }
+
     var handleEvents = function (elem, attributeName, attributeValue) {
         if (!attributeValue.match(DAAK_REGEX)){
             throw ("daak -> Event only one match!? '<" + elem.tagName + ' ' +  attributeName + '=' + attributeValue + " ...'");
@@ -157,7 +164,7 @@ var daak = (function ()
         elem.addEventListener(eventPerfectName, function (e) {
             var target = daak(e.target);
             var targetId = target.data('id');
-            var parentId = targetId.substr(0, 2);
+            var parentId = pickParentId(targetId);
             var event = daak[targetId][e.type];
 
             var arrayPattern = object2array(event, parentId);
@@ -166,14 +173,40 @@ var daak = (function ()
             // alert(eval("daak['" + parentId + "']" + "['a']"))
 
             eval(eventString);
+
+            handlePatterns();
         })
     }
 
+    handlePatterns = function () {
+        var patterns = daak[DAAK_PATTERN];
+        for(var elemId in patterns){
+            var elem = daak("[daak-id='" + elemId + "']")[0];
+            for(var attributeName in patterns[elemId]){
+                var attributeValue = patterns[elemId][attributeName];
+                handleOtherAttributes(elem, attributeName, attributeValue);
+            }
+        }
+    }
+
     handleOtherAttributes = function (elem, attributeName, attributeValue) {
-        daak[DAAK_PATTERN][elem.data('id')][attributeName] = attributeValue;
+        if (!daak[DAAK_PATTERN][elem.data('id')][attributeName] && daak[DAAK_PATTERN][elem.data('id')][attributeName] === undefined) {
+            daak[DAAK_PATTERN][elem.data('id')][attributeName] = attributeValue;
+        }
 
+        var attrValue = daak[DAAK_PATTERN][elem.data('id')][attributeName];
+        var targetId = elem.data('id');
+        var parentId = pickParentId(targetId);
+        var matches = attrValue.match(DAAK_REGEX_MORE);
 
-        daak[elem.data('id')][attributeName] = attributeValue;
+        matches.forEach(function (item, index) {
+            var newItem = item.replace('this', "daak['" + parentId + "']");
+            newItem = eval(pickValue(newItem));
+
+            attrValue = attrValue.replace(item, newItem);
+        });
+
+        elem.setAttribute(attributeName, attrValue);
     }
 
     var handleAttributes = function (elem) {
@@ -246,10 +279,9 @@ var daak = (function ()
                             elem.data('class', objectName);
 
                             elem.appendChild(daak(object.render));
+                            addProperties(elem, object);
 
                             traceTag(elem);
-
-                            addProperties(elem, object);
 
                             // tags[i].parentNode.replaceChild(elem, tags[i]);
 
