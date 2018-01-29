@@ -174,9 +174,9 @@ var daak = (function ()
     var handleAttributes = function (elem) {
         var attributes = elem.attributes;
         daak[elem.data('id')] = {};
-        alert(attributes.length)
         var removeAttributes = {};
-        for(var i = 0; i < attributes.length; i++) {alert(attributes[i].name + '--> index=' +  i.toString())
+
+        for(var i = 0; i < attributes.length; i++) {
             var attribute = attributes[i];
             var attributeName = attribute.name;
             var attributeValue = attribute.value;
