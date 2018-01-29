@@ -149,7 +149,6 @@ var daak = (function ()
         var eventValue = attributeValue.substr(2, attributeValue.length - 4);
 
         daak[elem.data('id')][eventPerfectName] =  eventValue;
-        elem.removeAttribute(eventName);
 
         elem.addEventListener(eventPerfectName, function (e) {
             var target = daak(e.target);
@@ -175,8 +174,9 @@ var daak = (function ()
     var handleAttributes = function (elem) {
         var attributes = elem.attributes;
         daak[elem.data('id')] = {};
-
-        for(var i = 0; i < attributes.length; i++) {
+        alert(attributes.length)
+        var removeAttributes = {};
+        for(var i = 0; i < attributes.length; i++) {alert(attributes[i].name + '--> index=' +  i.toString())
             var attribute = attributes[i];
             var attributeName = attribute.name;
             var attributeValue = attribute.value;
@@ -185,11 +185,17 @@ var daak = (function ()
 
                 if (attributeName[0] + attributeName[1] === 'on') { // is event
                     handleEvents(elem, attributeName, attributeValue);
+                    removeAttributes[attributeName] = true;
                 }
                 else {
                     handleOtherAttributes(elem, attributeName, attributeValue);
                 }
             }
+        }
+
+        //TODO : Selection best Algorithm for remove attributes
+        for(var name in removeAttributes){
+            elem.removeAttribute(name);
         }
     }
 
