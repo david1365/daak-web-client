@@ -10,8 +10,8 @@ var daak = (function ()
     var counts = 0;
     const DAAK_PATTERN = 'daak-Pattern';
     const REAL ='real-';
-    const DAAK_REGEX = /^{{[\w\.]*}}$/;
-    const DAAK_REGEX_MORE = /{{[\w\.]*}}/g;
+    const DAAK_REGEX = /^{{[\w\.\t\r\n\s\+\*\"\'\-\*\\\/\%\|\&\^\$\@\!\=\)\(\~]*}}$/;
+    const DAAK_REGEX_MORE = /{{[\w\.\t\r\n\s\+\*\"\'\-\*\\\/\%\|\&\^\$\@\!\=\)\(\~]*}}/g;
 
     var isFunction = function isFunction( obj ) {
         return typeof obj === "function" && typeof obj.nodeType !== "number";
