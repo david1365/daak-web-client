@@ -265,7 +265,7 @@ var daak = (function ()
 
         matches.forEach(function (item, index) {
             var pattern = pickValue(item);
-            var newItem = "<span dk-bind='{{" + pattern + "}}'></span>";
+            var newItem = "<daak dk-bind='{{" + pattern + "}}'></daak>";
 
             html = html.replace(item, newItem);
         });
@@ -314,9 +314,10 @@ var daak = (function ()
 
                             var elem = daak[daakId] = daak(tags[i]);
                             elem.data('id', daakId);
-                            elem.data('class', objectName);
+                            // elem.data('class', objectName);
 
-                            elem.appendChild(daak(object.render));
+                            elem.innerHTML = object.render;
+
                             addProperties(elem, object);
 
                             traceTag(elem);
