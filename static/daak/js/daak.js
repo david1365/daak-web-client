@@ -215,9 +215,9 @@ var daak = (function ()
 
             return false;
         }
-        else if (attributeName === 'daak-bind'){
+        else if (attributeName === 'dk-bind'){
             elem.innerHTML = attrValue;
-            elem.removeAttribute('daak-bind');
+            elem.removeAttribute('dk-bind');
 
             return false;
         }
@@ -265,7 +265,7 @@ var daak = (function ()
 
         matches.forEach(function (item, index) {
             var pattern = pickValue(item);
-            var newItem = "<span daak-bind='{{" + pattern + "}}'></span>";
+            var newItem = "<span dk-bind='{{" + pattern + "}}'></span>";
 
             html = html.replace(item, newItem);
         });
