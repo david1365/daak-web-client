@@ -251,8 +251,12 @@ var daak = (function ()
         for(var name in removeAttributes){
             elem.removeAttribute(name);
         }
+
         //TODO : Selection best Algorithm for remove attributes
-        elem.removeAttribute('value');
+        var elemValue = elem.getAttribute('value');
+        if (elemValue && elemValue.match(ATTRIBUTE_REGEX_MORE)) {
+            elem.removeAttribute('value');
+        }
     }
 
     var handleInnerHTML = function (object) {
