@@ -39,7 +39,6 @@
         render: '<input id="ff" onchange="{{this.textChange}}" onmouseleave="{{this.textChange}}" onclick="{{this.al}}" value=" ali has {{this.a}} for 2 {{this.brand}} years"/>' +
                 '<button >add</button>' +
                 '<div>~{this.brand}~ = ~{this.a}~ = ~{b}~<div onclick="boo(this)">~{this.foo}~ <input type="button" value="hhh" onclick="boo(this)"/></div></div>' +
-                '{{<div></div>}}' +
                 '<div>' +
                     '<div>' +
                         '<button onclick="{{a}}">other fucntion</button>' +
@@ -51,7 +50,9 @@
                     '</div>' +
                 '</div>' +
                 '<button onclick="{{this.add}}">add</button>' +
-                '<div daak-var=""></div>' ,
+                '<div daak-var="">' +
+                    '<div>{{}}</div>' +
+                '</div>' ,
 
         a: 1,
         cls: 'red',
