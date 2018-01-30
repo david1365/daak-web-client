@@ -10,8 +10,10 @@ var daak = (function ()
     var counts = 0;
     const DAAK_PATTERN = 'daak-Pattern';
     const REAL ='real-';
-    const DAAK_REGEX = /^{{[\w\.\t\r\n\s\+\*\"\'\-\*\\\/\%\|\&\^\$\@\!\=\)\(\~]*}}$/;
-    const DAAK_REGEX_MORE = /{{[\w\.\t\r\n\s\+\*\"\'\-\*\\\/\%\|\&\^\$\@\!\=\)\(\~]*}}/g;
+    const ATTRIBUTE_REGEX = /^{{[\w\.\t\r\n\s\+\*\"\'\-\*\\\/\%\|\&\^\$\@\!\=\)\(\~]*}}$/;
+    const ATTRIBUTE_REGEX_MORE = /{{[\w\.\t\r\n\s\+\*\"\'\-\*\\\/\%\|\&\^\$\@\!\=\)\(\~]*}}/g;
+
+    const HTML_REGEX_MORE = /~{[\w\.\t\r\n\s\+\*\"\'\-\*\\\/\%\|\&\^\$\@\!\=\)\(\~]*}~/g;
 
     var isFunction = function isFunction( obj ) {
         return typeof obj === "function" && typeof obj.nodeType !== "number";
@@ -155,7 +157,7 @@ var daak = (function ()
     }
 
     var handleEvents = function (elem, attributeName, attributeValue) {
-        if (!attributeValue.match(DAAK_REGEX)){
+        if (!attributeValue.match(ATTRIBUTE_REGEX)){
             throw ("daak -> Event only one match!? '<" + elem.tagName + ' ' +  attributeName + '=' + attributeValue + " ...'");
         }
 
@@ -199,7 +201,7 @@ var daak = (function ()
         var attrValue = daak[DAAK_PATTERN][elem.data('id')][attributeName];
         var targetId = elem.data('id');
         var parentId = pickParentId(targetId);
-        var matches = attrValue.match(DAAK_REGEX_MORE);
+        var matches = attrValue.match(ATTRIBUTE_REGEX_MORE);
 
         matches.forEach(function (item, index) {
             var newItem = item.replace('this', "daak['" + parentId + "']");
@@ -210,8 +212,16 @@ var daak = (function ()
 
         if (attributeName === 'value'){
             elem.value = attrValue;
+
             return false;
         }
+        else if (attributeName === 'daak-bind'){
+            elem.innerHTML = attrValue;
+            elem.removeAttribute('daak-bind');
+
+            return false;
+        }
+
         elem.setAttribute(attributeName, attrValue);
     }
 
@@ -226,15 +236,14 @@ var daak = (function ()
             var attributeName = attribute.name;
             var attributeValue = attribute.value;
 
-            if (attributeValue.match(DAAK_REGEX_MORE)){
-
-                if (attributeName[0] + attributeName[1] === 'on') { // is event
+            if (attributeName[0] + attributeName[1] === 'on') { // is event
+                if (attributeValue.match(ATTRIBUTE_REGEX_MORE)){
                     handleEvents(elem, attributeName, attributeValue);
                     removeAttributes[attributeName] = true;
                 }
-                else {
-                    handleOtherAttributes(elem, attributeName, attributeValue);
-                }
+            }
+            else if (attributeValue.match(ATTRIBUTE_REGEX_MORE)) {
+                handleOtherAttributes(elem, attributeName, attributeValue);
             }
         }
 
@@ -242,10 +251,22 @@ var daak = (function ()
         for(var name in removeAttributes){
             elem.removeAttribute(name);
         }
+        //TODO : Selection best Algorithm for remove attributes
+        elem.removeAttribute('value');
     }
 
-    var handleInnerHTML = function (elem) {
-        // alert(elem.textContent)
+    var handleInnerHTML = function (object) {
+        var html = object.render;
+        var matches = html.match(HTML_REGEX_MORE);
+
+        matches.forEach(function (item, index) {
+            var pattern = pickValue(item);
+            var newItem = "<span daak-bind='{{" + pattern + "}}'></span>";
+
+            html = html.replace(item, newItem);
+        });
+
+        object.render = html;
     }
 
     var traceTag = function (elem) {
@@ -266,7 +287,6 @@ var daak = (function ()
             //---------------------------------
 
             handleAttributes(tag);
-            handleInnerHTML(tag);
         }
     }
 
@@ -281,7 +301,9 @@ var daak = (function ()
         for(var objectName in window){
             var object = window[objectName];
             if(object){
-                if(object.render){
+                if(object.render) {
+                    handleInnerHTML(object);
+
                     for(var i = 0; i < tags.length; i++) {
                         if(tags[i].tagName == objectName.toUpperCase()) {
                             var daakId = '.' + counts.toString();

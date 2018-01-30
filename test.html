@@ -33,7 +33,7 @@
 //
         render: '<input id="ff" onchange="{{this.textChange}}" onmouseleave="{{this.textChange}}" onclick="{{this.al}}" value=" ali has {{this.a}} for 2 {{this.brand}} years"/>' +
                 '<button >add</button>' +
-                '<div>{{this.brand}}<div>{{this.foo}}</div></div>' +
+                '<div>~{this.brand}~ = ~{this.a}~<div onclick="">~{this.foo}~</div></div>' +
                 '{{<div></div>}}' +
                 '<div>' +
                     '<div>' +
@@ -63,17 +63,16 @@
 //            input.value = this.a;
 //            alert(this.a)
         },
-
         textChange: function (e) {
 //            alert('very good')
             var input = this.querySelectorAll('input:first-child')[0];
 //            alert(input.value + '->' + e.target.value)
-            console.log(input.value === e.target.value + ',textChange');
-            console.log("very good")
+            console.log((input.value === e.target.value) + ',textChange');
+//            console.log("very good")
         },
         al: function () {
-//            alert('hello iran');
-            console.log("hello iran")
+            alert('hello iran');
+//            console.log("hello iran")
         },
         res: function () {
             return 'abbass zangeneh';
