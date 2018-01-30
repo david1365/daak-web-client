@@ -3,6 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <style>
+        .red { background: red;}
+        .blue {
+            background: blue;
+        }
+    </style>
 </head>
 <body>
     <div>
@@ -23,7 +30,7 @@
     var b = 1;
     var test1 = {
         inherit: 'a, b, c',
-
+//
         render: '<input id="ff" onchange="{{this.textChange}}" onmouseleave="{{this.textChange}}" onclick="{{this.al}}" value=" ali has {{this.a}} for 2 {{this.brand}} years"/>' +
                 '<button >add</button>' +
                 '<div>{{this.brand}}</div>' +
@@ -33,7 +40,7 @@
                         '<button onclick="{{a}}">other fucntion</button>' +
                         '<button>test1</button>' +
                         '<div>' +
-                            '<input value="{{this.brand}} = {{b + b}}"/>' +
+                            '<input value="{{this.brand}} = {{b + b}}" class="{{this.cls}}"/>' +
                             '<span>ali</span>' +
                         '</div>' +
                     '</div>' +
@@ -41,11 +48,15 @@
                 '<button onclick="{{this.add}}">add</button>' ,
 
         a: 1,
+        cls: 'red',
         brand: 'ali mamad',
         add: function (ev) {
+            this.cls = this.cls == 'red' ? 'blue' : 'red';
 //            alert(ev.target.innerHTML);
-            var input = this.querySelectorAll('input:first-child')[0];
-//            alert(input.value === ev.target.value);
+
+//            alert(input.value);
+//            alert( ev.target.id)
+//            alert(ev.target.getAttribute('daak-id'))
             this.a++;
             b++;
 //            input.value = this.a;
@@ -53,10 +64,15 @@
         },
 
         textChange: function (e) {
-            alert('very good')
+//            alert('very good')
+            var input = this.querySelectorAll('input:first-child')[0];
+//            alert(input.value + '->' + e.target.value)
+            console.log(input.value === e.target.value + ',textChange');
+            console.log("very good")
         },
         al: function () {
-            alert('hello iran');
+//            alert('hello iran');
+            console.log("hello iran")
         }
     };
 </script>

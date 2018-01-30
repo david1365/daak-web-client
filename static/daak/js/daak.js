@@ -55,6 +55,10 @@ var daak = (function ()
                 else if (selector[0] === '#') {
                     elem = document.getElementById(selector.substr(1, selector.length - 1));
                 }
+                else if (selector[0] === '~') {
+                    var id = selector.substr(1, selector.length - 1);
+                    elem = document.querySelectorAll("[daak-id='" + id + "']")[0];
+                }
                 else {
                     elem = document.querySelectorAll(selector);
                 }
@@ -170,8 +174,6 @@ var daak = (function ()
             var arrayPattern = object2array(event, parentId);
             var eventString =  arrayPattern + '(e);';
 
-            // alert(eval("daak['" + parentId + "']" + "['a']"))
-
             eval(eventString);
 
             handlePatterns();
@@ -181,7 +183,7 @@ var daak = (function ()
     handlePatterns = function () {
         var patterns = daak[DAAK_PATTERN];
         for(var elemId in patterns){
-            var elem = daak("[daak-id='" + elemId + "']")[0];
+            var elem = daak("~" + elemId);
             for(var attributeName in patterns[elemId]){
                 var attributeValue = patterns[elemId][attributeName];
                 handleOtherAttributes(elem, attributeName, attributeValue);
