@@ -208,6 +208,10 @@ var daak = (function ()
             attrValue = attrValue.replace(item, newItem);
         });
 
+        if (attributeName === 'value'){
+            elem.value = attrValue;
+            return false;
+        }
         elem.setAttribute(attributeName, attrValue);
     }
 
