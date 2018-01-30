@@ -33,14 +33,14 @@
 //
         render: '<input id="ff" onchange="{{this.textChange}}" onmouseleave="{{this.textChange}}" onclick="{{this.al}}" value=" ali has {{this.a}} for 2 {{this.brand}} years"/>' +
                 '<button >add</button>' +
-                '<div>{{this.brand}}</div>' +
+                '<div>{{this.brand}}<div>{{this.foo}}</div></div>' +
                 '{{<div></div>}}' +
                 '<div>' +
                     '<div>' +
                         '<button onclick="{{a}}">other fucntion</button>' +
                         '<button>test1</button>' +
                         '<div>' +
-                            '<input value="{{this.brand}} = {{b + b}}" class="{{this.cls}}"/>' +
+                            '<input value="{{this.brand}} = {{b + b}} = {{this.res()}}" class="{{this.cls}}"/>' +
                             '<span>ali</span>' +
                         '</div>' +
                     '</div>' +
@@ -50,6 +50,7 @@
         a: 1,
         cls: 'red',
         brand: 'ali mamad',
+        foo: 'i love god',
         add: function (ev) {
             this.cls = this.cls == 'red' ? 'blue' : 'red';
 //            alert(ev.target.innerHTML);
@@ -73,6 +74,9 @@
         al: function () {
 //            alert('hello iran');
             console.log("hello iran")
+        },
+        res: function () {
+            return 'abbass zangeneh';
         }
     };
 </script>

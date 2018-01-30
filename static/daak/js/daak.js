@@ -182,7 +182,7 @@ var daak = (function ()
 
     handlePatterns = function () {
         var patterns = daak[DAAK_PATTERN];
-        for(var elemId in patterns){
+        for(var elemId in patterns) {
             var elem = daak("~" + elemId);
             for(var attributeName in patterns[elemId]){
                 var attributeValue = patterns[elemId][attributeName];
@@ -244,6 +244,10 @@ var daak = (function ()
         }
     }
 
+    var handleInnerHTML = function (elem) {
+        // alert(elem.textContent)
+    }
+
     var traceTag = function (elem) {
         var tags = elem.querySelectorAll('*');
         // var parentId = elem.data('id');
@@ -262,9 +266,11 @@ var daak = (function ()
             //---------------------------------
 
             handleAttributes(tag);
+            handleInnerHTML(tag);
         }
     }
 
+    //TODO: resolve this function
     var render = function () {
         
     }
