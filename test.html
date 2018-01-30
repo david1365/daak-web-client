@@ -24,7 +24,7 @@
 
 <script>
     function a(e) {
-        alert(e.target.innerHTML)
+        alert(e.target.innerHTML || e.target.textContent)
     }
 
     var b = 1;
@@ -33,7 +33,7 @@
 //
         render: '<input id="ff" onchange="{{this.textChange}}" onmouseleave="{{this.textChange}}" onclick="{{this.al}}" value=" ali has {{this.a}} for 2 {{this.brand}} years"/>' +
                 '<button >add</button>' +
-                '<div>~{this.brand}~ = ~{this.a}~<div onclick="">~{this.foo}~</div></div>' +
+                '<div>~{this.brand}~ = ~{this.a}~<div onclick="a(this)">~{this.foo}~ <input type="button" onclick="a(this)"/></div></div>' +
                 '{{<div></div>}}' +
                 '<div>' +
                     '<div>' +
