@@ -153,7 +153,8 @@ var daak = (function ()
     }
 
     var pickParentId = function (id) {
-        return id.substr(0, 2);
+        var splitId = id.split('.');
+        return '.' + splitId[1];
     }
 
     var handleEvents = function (elem, attributeName, attributeValue) {
