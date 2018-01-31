@@ -14,8 +14,8 @@
     <script>
         var test2 = {
             type: 'daak',
-            render: '<div dk-loop="{{this.arr}}">' +
-                        '<div dk-="">fdg</div>' +
+            render: '<div daak-loop="this.arr">' +
+                        '<div daak-bind="this.arr[index]">fdg</div>' +
                     '</div>',
             sum: 22,
             arr: ['ali', 'abass', 'mehrdad', 'qolli'],

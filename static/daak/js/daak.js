@@ -40,10 +40,9 @@ var daak = (function ()
 
     daak.fn = daak.prototype = {
         //Define daak’s fn prototype, specially contains init method
-        init: function (selector, context){
+        init: function (selector, context) {
             var elem;
-            if (!selector)
-            {
+            if (!selector) {
                 return this;
             }
 
@@ -89,6 +88,10 @@ var daak = (function ()
             else{
                 this.setAttribute("daak-" + name, value);
             }
+        },
+
+        'daak-loop': function () {
+             this.
         }
     }
 
@@ -299,8 +302,9 @@ var daak = (function ()
 
     var run = function (tags) {
         daak[DAAK_PATTERN] = {};
+        daak.md = {};
 
-        for(var objectName in window){
+        for(var objectName in window) {
             var object = window[objectName];
             if(object){
                 if(object.type && object.type === 'daak') {
