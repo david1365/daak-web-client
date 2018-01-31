@@ -306,7 +306,7 @@ var daak = (function ()
         for(var objectName in window){
             var object = window[objectName];
             if(object){
-                if(object.render) {
+                if(object.type && object.type === 'daak') {
                     handleInnerHTML(object);
 
                     for(var i = 0; i < tags.length; i++) {
