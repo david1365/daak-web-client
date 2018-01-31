@@ -90,8 +90,28 @@ var daak = (function ()
             }
         },
 
+        liveValue : function (value) {
+            var parentId = pickParentId(this.data('id'));
+            return eval(object2array(value, parentId))
+        },
+
+        register: function () {
+            var id = this.data(id);
+
+            if (!daak.md[id][attributeName] && daak[DAAK_PATTERN][elem.data('id')][attributeName] === undefined) {
+                daak[DAAK_PATTERN][elem.data('id')][attributeName] = attributeValue;
+            }
+
+        },
+    }
+
+    daak.md = {
         'daak-loop': function () {
-             this.
+            var loopValue = this.data('loop');
+            var arr = this.liveValue(loopValue);
+            // var
+
+            arr.forEach()
         }
     }
 
@@ -120,6 +140,12 @@ var daak = (function ()
 
     var addProperties = function (elem, object) {
         for(var propertyName in object) {
+            var property = object[propertyName];
+
+            elem[propertyName] = property;
+        }
+
+        for(var propertyName in daak.md) {
             var property = object[propertyName];
 
             elem[propertyName] = property;
