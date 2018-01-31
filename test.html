@@ -12,21 +12,21 @@
     </style>
 </head>
 <body>
-    <test1 ></test1>
-    <test1 ></test1>
-    <test1 ></test1>
-    <test1 ></test1>
-    <test1 ></test1>
-    <test1 ></test1>
-    <test1 ></test1>
-    <test1 ></test1>
-    <test1 ></test1>
-    <test1 ></test1>
-    <test1 ></test1>
-    <test1 ></test1>
-    <test1 ></test1>
-    <test1 ></test1>
-    <test1 ></test1>
+    <!--<test1 ></test1>-->
+    <!--<test1 ></test1>-->
+    <!--<test1 ></test1>-->
+    <!--<test1 ></test1>-->
+    <!--<test1 ></test1>-->
+    <!--<test1 ></test1>-->
+    <!--<test1 ></test1>-->
+    <!--<test1 ></test1>-->
+    <!--<test1 ></test1>-->
+    <!--<test1 ></test1>-->
+    <!--<test1 ></test1>-->
+    <!--<test1 ></test1>-->
+    <!--<test1 ></test1>-->
+    <!--<test1 ></test1>-->
+    <!--<test1 ></test1>-->
     <div>
         <test1 ></test1>
     </div>
@@ -34,6 +34,24 @@
     <div>
         <test1></test1>
     </div>
+
+    <test2></test2>
+    <test2></test2>
+    <test2></test2>
+    <test2></test2>
+    <test2></test2>
+    <test2></test2>
+    <test2></test2>
+    <test2></test2>
+    <test2></test2>
+    <test2></test2>
+    <test2></test2>
+    <test2></test2>
+    <test2></test2>
+    <test2></test2>
+    <test2></test2>
+    <test2></test2>
+
 
 <script src="static/daak/js/daak.js"></script>
 
@@ -103,10 +121,15 @@
         }
     };
 
-//    var test2 = {
-//        type: 'daak',
-//        render:
-//    }
+    var test2 = {
+        type: 'daak',
+        render:'<input type="text" value="{{this.sum}}">' +
+               '<input type="button" value="add" onclick="{{this.add}}">',
+        sum: 22,
+        add: function () {
+            this.sum += 10;
+        }
+    }
 </script>
 </body>
 </html>

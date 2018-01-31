@@ -264,14 +264,16 @@ var daak = (function ()
         var html = object.render;
         var matches = html.match(HTML_REGEX_MORE);
 
-        matches.forEach(function (item, index) {
-            var pattern = pickValue(item);
-            var newItem = "<daak dk-bind='{{" + pattern + "}}'></daak>";
+        if (matches) {
+            matches.forEach(function (item, index) {
+                var pattern = pickValue(item);
+                var newItem = "<daak dk-bind='{{" + pattern + "}}'></daak>";
 
-            html = html.replace(item, newItem);
-        });
+                html = html.replace(item, newItem);
+            });
 
-        object.render = html;
+            object.render = html;
+        }
     }
 
     var traceTag = function (elem) {
