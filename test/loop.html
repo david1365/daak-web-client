@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <test2></test2>
+
+
+
+    <script src="../static/daak/js/daak.js"></script>
+
+    <script>
+        var test2 = {
+            type: 'daak',
+            render: '<div dk-loop="{{this.arr}}">' +
+                        '<div dk-="">fdg</div>' +
+                    '</div>',
+            sum: 22,
+            arr: ['ali', 'abass', 'mehrdad', 'qolli'],
+            add: function () {
+                this.sum += 10;
+            },
+            go: function (item, index) {
+
+            }
+        }
+    </script>
+</body>
+</html>

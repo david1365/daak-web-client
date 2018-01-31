@@ -36,24 +36,24 @@
     </div>
 
     <test2></test2>
-    <test2></test2>
-    <test2></test2>
-    <test2></test2>
-    <test2></test2>
-    <test2></test2>
-    <test2></test2>
-    <test2></test2>
-    <test2></test2>
-    <test2></test2>
-    <test2></test2>
-    <test2></test2>
-    <test2></test2>
-    <test2></test2>
-    <test2></test2>
-    <test2></test2>
+    <!--<test2></test2>-->
+    <!--<test2></test2>-->
+    <!--<test2></test2>-->
+    <!--<test2></test2>-->
+    <!--<test2></test2>-->
+    <!--<test2></test2>-->
+    <!--<test2></test2>-->
+    <!--<test2></test2>-->
+    <!--<test2></test2>-->
+    <!--<test2></test2>-->
+    <!--<test2></test2>-->
+    <!--<test2></test2>-->
+    <!--<test2></test2>-->
+    <!--<test2></test2>-->
+    <!--<test2></test2>-->
 
 
-<script src="static/daak/js/daak.js"></script>
+<script src="../static/daak/js/daak.js"></script>
 
 <script>
     function a(e) {
@@ -84,10 +84,7 @@
                         '</div>' +
                     '</div>' +
                 '</div>' +
-                '<button onclick="{{this.add}}">add</button>' +
-                '<div daak-var="">' +
-                    '<div>{{}}</div>' +
-                '</div>' ,
+                '<button onclick="{{this.add}}">add</button>' ,
 
         a: 1,
         cls: 'red',
@@ -123,11 +120,16 @@
 
     var test2 = {
         type: 'daak',
-        render:'<input type="text" value="{{this.sum}}">' +
-               '<input type="button" value="add" onclick="{{this.add}}">',
+        render: '<div daak-loop="this.arr">' +
+                '<div >arr[]</div>' +
+                '</div>',
         sum: 22,
+        arr: ['ali', 'abass', 'mehrdad', 'qolli'],
         add: function () {
             this.sum += 10;
+        },
+        go: function (item, index) {
+
         }
     }
 </script>

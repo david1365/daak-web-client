@@ -211,12 +211,12 @@ var daak = (function ()
             attrValue = attrValue.replace(item, newItem);
         });
 
-        if (attributeName === 'value'){
+        if (attributeName === 'value') {
             elem.value = attrValue;
 
             return false;
         }
-        else if (attributeName === 'dk-bind'){
+        else if (attributeName === 'dk-bind') {
             elem.innerHTML = attrValue;
             elem.removeAttribute('dk-bind');
 
@@ -295,11 +295,6 @@ var daak = (function ()
 
             handleAttributes(tag);
         }
-    }
-
-    //TODO: resolve this function
-    var render = function () {
-        
     }
 
     var run = function (tags) {
