@@ -15,6 +15,8 @@ var daak = (function ()
 
     const HTML_REGEX_MORE = /~{[\w\.\t\r\n\s\+\*\"\'\-\*\\\/\%\|\&\^\$\@\!\=\)\(\~]*}~/g;
 
+    daak.oa = {};
+
     var isFunction = function isFunction( obj ) {
         return typeof obj === "function" && typeof obj.nodeType !== "number";
     };
@@ -26,6 +28,8 @@ var daak = (function ()
     }
 
     daak.functionName = functionName;
+    var isArray = daak.isArray = Array.isArray;
+    daak.isFunction = isFunction;
 
     // daak.fn.daakElement = function () {
     //     var elem = this[0];
@@ -90,33 +94,61 @@ var daak = (function ()
             }
         },
 
-        liveValue : function (value) {
+        liveValue : function (value, parentId) {
+            value  = pickValue(value);
             var parentId = pickParentId(this.data('id'));
-            return eval(object2array(value, parentId))
+            return eval(object2array(value, parentId));
         },
 
-        register: function () {
-            var id = this.data(id);
+        register: function (attributeName, value) {
+            if (!daak.oa[attributeName] && daak.oa[attributeName] === null) {
+                daak.oa[attributeName] = value;
 
-            if (!daak.md[id][attributeName] && daak[DAAK_PATTERN][elem.data('id')][attributeName] === undefined) {
-                daak[DAAK_PATTERN][elem.data('id')][attributeName] = attributeValue;
+                return false;
             }
 
+            return daak.oa[attributeName];
         },
-    }
 
-    daak.md = {
         'daak-loop': function () {
-            var loopValue = this.data('loop');
-            var arr = this.liveValue(loopValue);
-            // var
+            const attributeName = 'daak-loop';
 
-            arr.forEach()
+            var registered = this.register(
+                attributeName,
+                {
+                    attributeValue: this.data('loop'),
+                    pattern: this.innerHTML
+                }
+            );
+
+            if (registered) {
+                var loopValue = registered.attributeValue;
+                checkOneMatch(this, attributeName, loopValue);
+
+                var arr = this.liveValue(loopValue);
+
+                if ( isFunction(arr) ) {
+                    arr = arr();
+                }
+
+                if (isArray(arr)){
+                    // var elem = daak.parseHTML(registered.pattern);
+                    // traceTag(elem);
+                    // alert(elem.innerHTML);
+                    alert(registered.pattern);
+                }
+                else{
+                    throw ("daak -> 'daak-loop' dont array!? '<" + this.tagName + ' ' +  attributeName + '=' + loopValue + " ...'");
+                }
+
+                //arr.forEach()
+            }
         }
     }
 
     // Give the init function the "daak" prototype for later instantiation
     daak.fn.init.prototype = daak.fn;
+
 
     var createRealProperty = function (elem, propertyName) {
         if (!elem[REAL + propertyName] && elem[REAL + propertyName] === undefined) {
@@ -129,6 +161,12 @@ var daak = (function ()
     var addFn = function (elem) {
         for(var propertyName in daak.fn) {
             if (propertyName !== 'init') {
+                if (propertyName.indexOf('daak-') == 0){
+                    if (!daak.oa[propertyName]) {
+                        daak.oa[propertyName] = null;
+                    }
+                }
+
                 var property = daak.fn[propertyName];
 
                 createRealProperty(elem, propertyName);
@@ -140,12 +178,6 @@ var daak = (function ()
 
     var addProperties = function (elem, object) {
         for(var propertyName in object) {
-            var property = object[propertyName];
-
-            elem[propertyName] = property;
-        }
-
-        for(var propertyName in daak.md) {
             var property = object[propertyName];
 
             elem[propertyName] = property;
@@ -186,10 +218,14 @@ var daak = (function ()
         return '.' + splitId[1];
     }
 
-    var handleEvents = function (elem, attributeName, attributeValue) {
-        if (!attributeValue.match(ATTRIBUTE_REGEX)){
+    var checkOneMatch = function (elem, attributeName, attributeValue) {
+        if (!attributeValue.match(ATTRIBUTE_REGEX)) {
             throw ("daak -> Event only one match!? '<" + elem.tagName + ' ' +  attributeName + '=' + attributeValue + " ...'");
         }
+    }
+
+    var handleEvents = function (elem, attributeName, attributeValue) {
+        checkOneMatch(elem, attributeValue, attributeValue);
 
         var eventName = attributeName;/*.substr(0, attributeName.length);*/
         var eventPerfectName = attributeName.substr(2, attributeName.length);
@@ -223,36 +259,64 @@ var daak = (function ()
         }
     }
 
+
+    var handleOperateAttribute = function (elem) {
+        for ( var attributeName in daak.oa) {
+            var selector = "[" + attributeName + "]";
+            var tags = elem.querySelectorAll(selector);
+
+            for(var i = 0; i < tags.length; i++) {
+                var tag = daak(tags[i]);
+                daak(tag)[attributeName](elem)
+            }
+        }
+    }
+
+    var isOperateAttribute = function (attributeName) {
+        for ( var oaName in daak.oa) {
+            if (oaName === attributeName){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     handleOtherAttributes = function (elem, attributeName, attributeValue) {
-        if (!daak[DAAK_PATTERN][elem.data('id')][attributeName] && daak[DAAK_PATTERN][elem.data('id')][attributeName] === undefined) {
-            daak[DAAK_PATTERN][elem.data('id')][attributeName] = attributeValue;
+        if (isOperateAttribute(attributeName)) {
+            daak(elem)[attributeName](); //register Operate Attribute
         }
+        else {
+            if (!daak[DAAK_PATTERN][elem.data('id')][attributeName] && daak[DAAK_PATTERN][elem.data('id')][attributeName] === undefined) {
+                daak[DAAK_PATTERN][elem.data('id')][attributeName] = attributeValue;
+            }
 
-        var attrValue = daak[DAAK_PATTERN][elem.data('id')][attributeName];
-        var targetId = elem.data('id');
-        var parentId = pickParentId(targetId);
-        var matches = attrValue.match(ATTRIBUTE_REGEX_MORE);
+            var attrValue = daak[DAAK_PATTERN][elem.data('id')][attributeName];
+            var targetId = elem.data('id');
+            var parentId = pickParentId(targetId);
+            var matches = attrValue.match(ATTRIBUTE_REGEX_MORE);
 
-        matches.forEach(function (item, index) {
-            var newItem = item.replace('this', "daak['" + parentId + "']");
-            newItem = eval(pickValue(newItem));
+            matches.forEach(function (item, index) {
+                var newItem = item.replace('this', "daak['" + parentId + "']");
+                newItem = eval(pickValue(newItem));
 
-            attrValue = attrValue.replace(item, newItem);
-        });
+                attrValue = attrValue.replace(item, newItem);
+            });
 
-        if (attributeName === 'value') {
-            elem.value = attrValue;
+            if (attributeName === 'value') {
+                elem.value = attrValue;
 
-            return false;
+                return false;
+            }
+            else if (attributeName === 'dk-bind') {
+                elem.innerHTML = attrValue;
+                elem.removeAttribute('dk-bind');
+
+                return false;
+            }
+
+            elem.setAttribute(attributeName, attrValue);
         }
-        else if (attributeName === 'dk-bind') {
-            elem.innerHTML = attrValue;
-            elem.removeAttribute('dk-bind');
-
-            return false;
-        }
-
-        elem.setAttribute(attributeName, attrValue);
     }
 
     var handleAttributes = function (elem) {
@@ -278,7 +342,7 @@ var daak = (function ()
         }
 
         //TODO : Selection best Algorithm for remove attributes
-        for(var name in removeAttributes){
+        for(var name in removeAttributes) {
             elem.removeAttribute(name);
         }
 
@@ -324,11 +388,12 @@ var daak = (function ()
 
             handleAttributes(tag);
         }
+
+        handleOperateAttribute(elem);
     }
 
     var run = function (tags) {
         daak[DAAK_PATTERN] = {};
-        daak.md = {};
 
         for(var objectName in window) {
             var object = window[objectName];

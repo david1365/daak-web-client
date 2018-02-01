@@ -5,17 +5,23 @@
     <title>Title</title>
 </head>
 <body>
-    <test2></test2>
+    <test2 id="aa"></test2>
 
 
 
     <script src="../static/daak/js/daak.js"></script>
 
     <script>
+//        daak.fn.tt = function () {
+//            this.remove();
+//        }
+//
+//        daak('#aa').tt()
+
         var test2 = {
             type: 'daak',
-            render: '<div daak-loop="this.arr">' +
-                        '<div daak-bind="this.arr[index]">yy</div>' +
+            render: '<div daak-loop="{{this.arr}}">' +
+                        '<div>~{this.sum}~ = ~{item}~ <input type="button" onclick="{{this.add}}"> </div>' +
                     '</div>',
             sum: 22,
             arr: ['ali', 'abass', 'mehrdad', 'qolli'],

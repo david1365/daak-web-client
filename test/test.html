@@ -73,7 +73,7 @@
 //
         render: '<input id="ff" onchange="{{this.textChange}}" onmouseleave="{{this.textChange}}" onclick="{{this.al}}" value=" ali has {{this.a}} for 2 {{this.brand}} years"/>' +
                 '<button >add</button>' +
-                '<div>~{this.brand}~ = ~{this.a}~ = ~{b}~<div onclick="boo(this)">~{this.foo}~ <input type="button" value="hhh" onclick="boo(this)"/></div></div>' +
+                '<div onclick="{{this.di}}" >~{this.brand}~ = ~{this.a}~ = ~{b}~<div onclick="boo(this)">~{this.foo}~ <input type="button" value="hhh" onclick="boo(this)"/></div></div>' +
                 '<div>' +
                     '<div>' +
                         '<button onclick="{{a}}">other fucntion</button>' +
@@ -115,6 +115,9 @@
         },
         res: function () {
             return 'abbass zangeneh';
+        },
+        di: function () {
+            alert('click div tag')
         }
     };
 
